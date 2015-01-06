@@ -11,7 +11,7 @@ package projet;
  */
 public class PorteMonnaie {
     public static int argent=20;
-    public int tune23;
+    public int tune230;
     
     public static void gainArgent(int gain) {
         
