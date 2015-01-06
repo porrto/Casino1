@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projet;
+package Roulette;
 
 import java.util.Random;
-import static projet.Roulette.nombre;
+import static Roulette.Roulette.nombre;
 
 /**
  *
