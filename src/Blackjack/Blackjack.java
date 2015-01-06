@@ -26,7 +26,7 @@ import java.util.InputMismatchException ;
         
        public static void main(String[] args) {
        
-          int argent;          // Amount of money the user has.
+          double argent;          // Amount of money the user has.
                    // Amount user bets on a game.
              // Did the user win the game?
           
@@ -49,7 +49,7 @@ import java.util.InputMismatchException ;
            
     } // end main()
        
-       static void question(int argent){
+       static void question(double argent){
            
             if (argent == 0) {
                  System.out.println("Vous n'avez plus d'argent!");
@@ -84,7 +84,7 @@ import java.util.InputMismatchException ;
                }
        } }
        
-       static int jouerBlackjack(int argent) {
+       static double jouerBlackjack(double argent) {
              // Let the user play one game of Blackjack.
              // Return true if the user wins, false if the user loses.
     
@@ -95,7 +95,7 @@ import java.util.InputMismatchException ;
           paquet = new Paquet();
           mainCroupier = new MainBlackjack();
           mainJoueur = new MainBlackjack();
-          int mise=2000000; 
+          double mise=2000000; 
     
           /*  Shuffle the deck, then deal two cards to each player. */
           
@@ -120,7 +120,7 @@ import java.util.InputMismatchException ;
                  while (mise > argent || mise <= 0) {
                      mise=2000000;
                     try {
-                     mise= (int) sc.nextInt();
+                     mise= (double) sc.nextDouble();
                  
                 }
                 
@@ -159,7 +159,7 @@ import java.util.InputMismatchException ;
                                          + " et " + mainJoueur.selectionnerCarte(1) + ".");
                System.out.println("");
               System.out.println("Vous avez un Blackjack. Vous gagnez.");
-              argent = argent + mise ;
+              argent = argent + mise*1.5 ;
               question(argent);
                return argent;
           }
