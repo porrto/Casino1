@@ -15,7 +15,7 @@ import static Roulette.Roulette.nombre;
 public class Projet {
 
     /**
-     * @param args the command line arguments
+     * @param argent
      */
     public static void Jouer(double argent) {
 
