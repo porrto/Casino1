@@ -21,17 +21,15 @@ public class Projet {
 
 
         System.out.println("Vous disposez de 20 euros");
-        Roulette rou = new Roulette();
+      Roulette rou = new Roulette();
         
              Random rand = new Random();
              nombre= rand.nextInt(37);
         
-        rou.getSreenRoulette();
+       rou.getSreenRoulette();
        
-    
-        
-        
-    }
+  
+           }
  
 
        
