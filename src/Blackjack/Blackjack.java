@@ -46,7 +46,7 @@ import java.util.InputMismatchException ;
           System.out.println("Il vous reste $" + argent + '.');
        
            jouerBlackjack(argent) ;
-           MenuCasino.Menu.argent=argent;
+         
     } // end main()
        
        static void question(double argent){
@@ -81,6 +81,7 @@ import java.util.InputMismatchException ;
                else {
                    
                    System.out.println("Vous quittez la table avec " + argent +"$") ;
+                     MenuCasino.Menu.argent=argent;
                }
        } }
        
