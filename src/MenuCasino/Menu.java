@@ -13,31 +13,62 @@ import java.util.Scanner;
  */
 public class Menu {
     
+  public static double argent =20;
      public static void main(String[] args) {
+                boolean quitter=false;
+                 String choix;
          
          Scanner sc = new Scanner(System.in);
+         
+           while(quitter==false) {
       System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3)");
-       int choix  =sc.nextInt();
+       int jeux  =sc.nextInt();
        
-       switch(choix) {
+
+     
+       
+       switch(jeux) {
            case 1:
-        Blackjack.Blackjack.main(args);
+        Blackjack.Blackjack.Jouer(argent);
+               System.out.println("Voulez vous quitter le casino (Y) or (N) ?");
+               choix=sc.next();
+               if(choix.equals("N")) {
+                   quitter=false;
+               }
+               else {
+                   quitter=true;
+               }
                break;
                
            case 2:
-               MachineASous.MachineASous.main(args);
+               MachineASous.MachineASous.Jouer(argent);
+               System.out.println("Voulez vous quitter le casino (Y) pr (N) ?");
+                 choix=sc.next();
+               if(choix.equals("N")) {
+                   quitter=false;
+               }
+               else {
+                   quitter=true;
+               }
                break;
                
            case 3:
-               Roulette.Projet.main(args);
+               Roulette.Projet.Jouer(argent);
+               System.out.println("Voulez vous quitter le casino (Y) or (N( ?");
+                 choix= sc.next();
+               if(choix.equals("N")) {
+                   quitter=false;
+               }
+               else {
+                   quitter=true;
+               }
                break;
-               
-           default: 
-               System.out.println("Veuillez entrer 1 2 ou 3");
+              
     }
+               System.out.println(argent);
+           }
     
-    
-    
+         System.out.println("Au revoir");
     
     
      }

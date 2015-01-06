@@ -17,16 +17,17 @@ public class Projet {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void Jouer(double argent) {
 
 
-        System.out.println("Vous disposez de 20 euros");
+        System.out.println("Vous disposez de" + argent);
       Roulette rou = new Roulette();
         
              Random rand = new Random();
              nombre= rand.nextInt(37);
-        
+        PorteMonnaie.argent=argent;
        rou.getSreenRoulette();
+       MenuCasino.Menu.argent=PorteMonnaie.argent;
        
   
            }

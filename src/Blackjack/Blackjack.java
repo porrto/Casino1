@@ -24,16 +24,16 @@ import java.util.InputMismatchException ;
     public class Blackjack {
        
         
-       public static void main(String[] args) {
+       public static void Jouer(double argent) {
        
-          double argent;          // Amount of money the user has.
+                 // Amount of money the user has.
                    // Amount user bets on a game.
              // Did the user win the game?
           
           System.out.println("Bienvenue à la table de BlackJack");
           System.out.println("");
           
-          argent = 100;  // User starts with $100.
+         // User starts with $100.
        
           
               if (argent == 0) {
@@ -46,7 +46,7 @@ import java.util.InputMismatchException ;
           System.out.println("Il vous reste $" + argent + '.');
        
            jouerBlackjack(argent) ;
-           
+           MenuCasino.Menu.argent=argent;
     } // end main()
        
        static void question(double argent){

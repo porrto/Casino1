@@ -311,7 +311,7 @@ public void choixJoueur() {
                           }
                           else {
                               if(choixnouvellepartie.equals("N")) {
-                                
+                              System.out.println("Vous quittez la table");
                               }
                               else {
                                   System.out.println("Veuillez entrer Y ou N ");

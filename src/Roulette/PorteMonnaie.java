@@ -10,8 +10,8 @@ package Roulette;
  * @author isen
  */
 public class PorteMonnaie {
-    public static int argent=20;
-    public int tune230;
+    public static double argent;
+    
     
     public static void gainArgent(int gain) {
         
@@ -24,9 +24,7 @@ public class PorteMonnaie {
         
     }
     
-     public static int getArgent() {
-            
-            return argent;
-        }
+   
+     
     }
 
