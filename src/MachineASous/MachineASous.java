@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class MachineASous {
 
     /**
-     * @param args the command line arguments
+     * @param argent
      */
     public static void Jouer(double argent) {
         // TODO code application logic here
@@ -40,7 +40,7 @@ public class MachineASous {
           System.out.println("Il vous reste $" + argent + '.');
        
            jouerMachineASous(argent) ;
-   MenuCasino.Menu.argent=argent;           
+            
     }
     
            static void question(double argent){
@@ -76,6 +76,7 @@ public class MachineASous {
                else {
                    
                    System.out.println("Vous quittez la table avec " + argent +"$") ;
+                   MenuCasino.Menu.argent=argent;  
                }
                }
        }
