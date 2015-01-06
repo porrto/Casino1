@@ -18,7 +18,7 @@ public class MachineASous {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void Jouer(double argent) {
         // TODO code application logic here
         
        
@@ -27,7 +27,7 @@ public class MachineASous {
         System.out.println("Bienvenue à la machine à sous");
           System.out.println("");
           
-          int argent = 100;  // User starts with $100.
+        
        
           
               if (argent == 0) {
@@ -40,10 +40,10 @@ public class MachineASous {
           System.out.println("Il vous reste $" + argent + '.');
        
            jouerMachineASous(argent) ;
-           
+   MenuCasino.Menu.argent=argent;           
     }
     
-           static void question(int argent){
+           static void question(double argent){
            
                
                if (argent == 0) {
@@ -82,7 +82,7 @@ public class MachineASous {
            
            
            
-         static int jouerMachineASous(int argent) {
+         static double jouerMachineASous(double argent) {
              
              Tableau tirage ;
              tirage = new Tableau() ;
@@ -194,7 +194,7 @@ public class MachineASous {
          }
 
          
-         public static int calculGains(int argent, int mise, Tableau tirage,int i ,int j) {
+         public static double calculGains(double argent, int mise, Tableau tirage,int i ,int j) {
              
              if (tirage.cases[i][j]==1){
                       
