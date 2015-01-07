@@ -20,9 +20,9 @@ public class Menu {
          
          Scanner sc = new Scanner(System.in);
          
-           while(quitter==false) {
+          while(quitter==false) {
       System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3)");
-       int jeux  =sc.nextInt();
+          int jeux  =sc.nextInt();
        
 
      
