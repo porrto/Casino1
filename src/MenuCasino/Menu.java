@@ -13,15 +13,16 @@ import java.util.Scanner;
  */
 public class Menu {
     
-  public static double argent =20;
+  public static double argent =40;
+  public static  boolean quitter=false;
      public static void main(String[] args) {
-                boolean quitter=false;
+            
                  String choix;
          
          Scanner sc = new Scanner(System.in);
          
           while(quitter==false) {
-      System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3)");
+      System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
           int jeux  =sc.nextInt();
        
 
@@ -55,6 +56,18 @@ public class Menu {
            case 3:
                Roulette.Projet.Jouer(argent);
                System.out.println("Voulez vous quitter le casino (Y) or (N( ?");
+                 choix= sc.next();
+               if(choix.equals("N")) {
+                   quitter=false;
+               }
+               else {
+                   quitter=true;
+               }
+               break;
+               
+           case 4:
+               projetbar.ProjetBar.Jouer(argent);
+                System.out.println("Voulez vous quitter le casino (Y) or (N( ?");
                  choix= sc.next();
                if(choix.equals("N")) {
                    quitter=false;
