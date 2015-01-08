@@ -31,7 +31,28 @@ public class Menu {
        switch(jeux) {
            case 1:
         Blackjack.Blackjack.Jouer(argent);
-               System.out.println("Voulez vous quitter le casino (Y) or (N) ?");
+             
+               break;
+               
+           case 2:
+               MachineASous.MachineASous.Jouer(argent);
+              
+               break;
+               
+           case 3:
+               Roulette.Projet.Jouer(argent);
+           
+               break;
+               
+           case 4:
+               projetbar.ProjetBar.Jouer(argent);
+            
+               break;
+              
+    }
+       
+        if(quitter==false) {
+         System.out.println("Voulez vous quitter le casino (Y) or (N) ?");
                choix=sc.next();
                if(choix.equals("N")) {
                    quitter=false;
@@ -39,49 +60,11 @@ public class Menu {
                else {
                    quitter=true;
                }
-               break;
-               
-           case 2:
-               MachineASous.MachineASous.Jouer(argent);
-               System.out.println("Voulez vous quitter le casino (Y) pr (N) ?");
-                 choix=sc.next();
-               if(choix.equals("N")) {
-                   quitter=false;
-               }
-               else {
-                   quitter=true;
-               }
-               break;
-               
-           case 3:
-               Roulette.Projet.Jouer(argent);
-               System.out.println("Voulez vous quitter le casino (Y) or (N( ?");
-                 choix= sc.next();
-               if(choix.equals("N")) {
-                   quitter=false;
-               }
-               else {
-                   quitter=true;
-               }
-               break;
-               
-           case 4:
-               projetbar.ProjetBar.Jouer(argent);
-                System.out.println("Voulez vous quitter le casino (Y) or (N( ?");
-                 choix= sc.next();
-               if(choix.equals("N")) {
-                   quitter=false;
-               }
-               else {
-                   quitter=true;
-               }
-               break;
-              
-    }
-               System.out.println(argent);
+            
            }
+          }
     
-         System.out.println("Au revoir");
+         System.out.println("Vous partez avec " + argent);
     
     
      }
