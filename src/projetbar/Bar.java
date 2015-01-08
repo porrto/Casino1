@@ -87,11 +87,10 @@ public class Bar {
         System.out.println("Vous avez" +  PorteMonnaie.argent);
         if(Alcoolémie.soul==true){
                 this.fired();
-                   }
-        else {
-            if (MenuCasino.Menu.quitter==true) {
                 
-            }
+                   }
+        
+          
             else {
         
         System.out.println("Voulez vous un Cocktail (C), un Soda (S) ou un Alcool fort (A) ? ");
@@ -114,7 +113,7 @@ public class Bar {
             
         }
             }
-        }
+        
     }
 
     public void choixCoktails() {
@@ -266,13 +265,15 @@ public class Bar {
                  
                  if(pass==true) {
                      System.out.println(" Vous êtes re-rentré dans le casino");
+                        MenuCasino.Menu.fired=true;
+                     
                  }
              
                  else {
+                     MenuCasino.Menu.fired=true;
                      MenuCasino.Menu.quitter=true;
-                  
-                     
                  }
+             break;
                  
              case "N": 
                  System.out.println("au revoir");

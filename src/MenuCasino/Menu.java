@@ -15,6 +15,7 @@ public class Menu {
     
   public static double argent =40;
   public static  boolean quitter=false;
+  public static boolean fired=false;
      public static void main(String[] args) {
             
                  String choix;
@@ -51,7 +52,7 @@ public class Menu {
               
     }
        
-        if(quitter==false) {
+        if(fired==false ) {
          System.out.println("Voulez vous quitter le casino (Y) or (N) ?");
                choix=sc.next();
                if(choix.equals("N")) {

@@ -19,6 +19,7 @@ public class ProjetBar {
         Bar bar = new Bar();
         PorteMonnaie.argent=argent;
         bar.choixJoueur();
+        MenuCasino.Menu.argent=PorteMonnaie.argent;
     }
     
 }
