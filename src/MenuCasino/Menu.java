@@ -16,6 +16,8 @@ public class Menu {
   public static double argent =40;
   public static  boolean quitter=false;
   public static boolean fired=false;
+  public static int jeux;
+  
      public static void main(String[] args) {
             
                  String choix;
@@ -24,9 +26,8 @@ public class Menu {
          
           while(quitter==false) {
       System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
-          int jeux  =sc.nextInt();
-       
-
+      
+       jeux = sc.nextInt();
      
        
        switch(jeux) {
@@ -51,7 +52,9 @@ public class Menu {
             
                break;
               
-    }
+                 }
+            
+    
        
         if(fired == false ) {
          System.out.println("Voulez vous quitter le casino (Y) or (N) ?");

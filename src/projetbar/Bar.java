@@ -7,9 +7,7 @@ package projetbar;
 
 
 import SetUp.SetUpBoisson;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -22,7 +20,6 @@ public class Bar {
     public String choixBar;
     public int choixBoisson;
     public int choixverre;
-    public boolean boisson = false ;
     public boolean pass;
 
     
@@ -74,11 +71,12 @@ public class Bar {
          }
   
         try {
-                     choixBoisson= (int) sc.nextInt();
+                     choixBoisson=  sc.nextInt();
            }               
            catch (InputMismatchException e) {
                      System.out.println("Vous n'avez pas rentré les alcool proposés");
                      this.choixCocktails(cocktails);
+                    
            }
           
           if ( choixBoisson > cocktails.setUpCocktails().size() || choixBoisson == 0) {
@@ -108,7 +106,7 @@ public class Bar {
          }
   
         try {
-                     choixBoisson= (int) sc.nextInt();
+                     choixBoisson=  sc.nextInt();
            }               
            catch (InputMismatchException e) {
                      System.out.println("Vous n'avez pas rentré les alcool proposés");
@@ -140,7 +138,7 @@ public class Bar {
        	 System.out.println (elem.name  + "   " + elem.price  + "   (" + elem.number + ")");
        }
            try {
-                     choixBoisson= (int) sc.nextInt();
+                     choixBoisson= sc.nextInt();
            }               
            catch (InputMismatchException e) {
                      System.out.println("Vous n'avez pas rentré les alcool proposés");
