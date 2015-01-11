@@ -272,64 +272,6 @@ public void verifCouleur() {
     }
 }
 
-public void choixJoueur() {
-    
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Nombre (N) Parité (P) Couleur (C) ou Tourner la roue (R) ?  ");
-     choix=sc.next();
-    
-    if("N".equals(choix) || "P".equals(choix) || "C".equals(choix) ||"R".equals(choix)) {
-         switch(choix) {
-        case "N": this.choixNombre();
-            break;
-        case "P": this.choixParité();
-            break;
-        case "C": this.choixCouleur();
-            break;
-        case "R":
-                    if (choixnombre=="" & choixcouleur=="" && choixparité=="") {
-                        System.out.println("Vous n'avez pas misé") ;
-                        this.choixJoueur();
-                                }
-                    else {
-                    
-            this.verifNombre();
-                         this.verifParité();
-                      this.verifCouleur();
-                        System.out.println("Le tirage était de couleur "+ couleur +"de parité" + tiragepair +"et le nombre" + nombre);
-                         System.out.println("Votre porte monnaie est maintenant de" + PorteMonnaie.argent+"euros");
-                       
-                         if(PorteMonnaie.argent!=0) {
-                         System.out.println("Voulez vous rejouez ? (Y) or (N) ");
-                          String  choixnouvellepartie =sc.next();
-                          if(choixnouvellepartie.equals("Y")) {
-                              System.out.println("Vous disposez maintenant de " + PorteMonnaie.argent+"euros");
-                                  Roulette rou = new Roulette();
-                                  Random rand = new Random();
-                                   nombre= rand.nextInt(37);
-                                   rou.getSreenRoulette();
-                          }
-                          else {
-                              if(choixnouvellepartie.equals("N")) {
-                              System.out.println("Vous quittez la table");
-                              }
-                              else {
-                                  System.out.println("Veuillez entrer Y ou N ");
-                                  this.choixJoueur();
-                              }
-                          }
-            break;
-    }
-          }
-    }
-    }
-    else {
-            System.out.println("Vous n'avez pas entré N ,P , C ou R");
-        this.choixJoueur();
-  
-       }
-    }
-
     public void montantMise() {
     
        
@@ -447,4 +389,61 @@ if (parité==true) {
      } 
     }
     
+    public void choixJoueur() {
+    
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Nombre (N) Parité (P) Couleur (C) ou Tourner la roue (R) ?  ");
+     choix=sc.next();
+    
+    if("N".equals(choix) || "P".equals(choix) || "C".equals(choix) ||"R".equals(choix)) {
+         switch(choix) {
+        case "N": this.choixNombre();
+            break;
+        case "P": this.choixParité();
+            break;
+        case "C": this.choixCouleur();
+            break;
+        case "R":
+                    if (choixnombre=="" & choixcouleur=="" && choixparité=="") {
+                        System.out.println("Vous n'avez pas misé") ;
+                        this.choixJoueur();
+                                }
+                    else {
+                    
+            this.verifNombre();
+                         this.verifParité();
+                      this.verifCouleur();
+                        System.out.println("Le tirage était de couleur "+ couleur +"de parité" + tiragepair +"et le nombre" + nombre);
+                         System.out.println("Votre porte monnaie est maintenant de" + PorteMonnaie.argent+"euros");
+                       
+                         if(PorteMonnaie.argent!=0) {
+                         System.out.println("Voulez vous rejouez ? (Y) or (N) ");
+                          String  choixnouvellepartie =sc.next();
+                          if(choixnouvellepartie.equals("Y")) {
+                              System.out.println("Vous disposez maintenant de " + PorteMonnaie.argent+"euros");
+                                  Roulette rou = new Roulette();
+                                  Random rand = new Random();
+                                   nombre= rand.nextInt(37);
+                                   rou.getSreenRoulette();
+                          }
+                          else {
+                              if(choixnouvellepartie.equals("N")) {
+                              System.out.println("Vous quittez la table");
+                              }
+                              else {
+                                  System.out.println("Veuillez entrer Y ou N ");
+                                  this.choixJoueur();
+                              }
+                          }
+            break;
+    }
+          }
+    }
+    }
+    else {
+            System.out.println("Vous n'avez pas entré N ,P , C ou R");
+        this.choixJoueur();
+  
+       }
+    }
 }

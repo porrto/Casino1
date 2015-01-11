@@ -46,13 +46,14 @@ public class Menu {
                break;
                
            case 4:
-               projetbar.ProjetBar.Jouer(argent);
+              projetbar.ProjetBar.Jouer(argent);
+              
             
                break;
               
     }
        
-        if(fired==false ) {
+        if(fired == false ) {
          System.out.println("Voulez vous quitter le casino (Y) or (N) ?");
                choix=sc.next();
                if(choix.equals("N")) {

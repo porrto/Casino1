@@ -18,10 +18,8 @@ public class Alcoolémie {
     static boolean soul = false;
         
     public static void  verifTaux(double ref) {
+        
           Scanner sc = new Scanner(System.in);
-          
-          
-          
           
         if(positif==false)  {
         if (taux+ref>0.5) {
