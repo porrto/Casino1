@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author isen
  */
-public class Alcoolémie {
+public abstract class Alcoolémie {
     static double taux = 0;
     static boolean positif=false;
     static boolean drink=false;

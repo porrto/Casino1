@@ -26,14 +26,12 @@ import java.util.InputMismatchException ;
         
        public static void Jouer(double argent) {
        
-                 // Amount of money the user has.
-                   // Amount user bets on a game.
-             // Did the user win the game?
+                
           
           System.out.println("Bienvenue à la table de BlackJack");
           System.out.println("");
           
-         // User starts with $100.
+         // On commence 
        
           
               if (argent == 0) {
@@ -47,7 +45,7 @@ import java.util.InputMismatchException ;
        
            jouerBlackjack(argent) ;
          
-    } // end main()
+    } // fin main
        
        static void question(double argent){
            
@@ -59,7 +57,7 @@ import java.util.InputMismatchException ;
                else {
           System.out.println("Continuer (C) ou Arrêter (A) ?");
                char choix ='?';
-              // User's response, 'C' or 'A'.
+              // Réponse utilisateur.
                do { 
                    try { choix = (char) System.in.read(); }
                    catch (IOException e){
@@ -70,12 +68,10 @@ import java.util.InputMismatchException ;
                } 
                while (choix != 'C' && choix != 'A');
     
-               /* If the user Hits, the user gets a card.  If the user Stands,
-                  the loop ends (and it's the dealer's turn to draw cards).
-               */
+           
     
                if ( choix == 'C' ) {
-                       // Loop ends; user is done taking cards.
+                        
                    jouerBlackjack(argent);
                }
                else {
@@ -86,19 +82,17 @@ import java.util.InputMismatchException ;
        } }
        
        static double jouerBlackjack(double argent) {
-             // Let the user play one game of Blackjack.
-             // Return true if the user wins, false if the user loses.
-    
-          Paquet paquet;                  // A deck of cards.  A new deck for each game.
-          MainBlackjack mainCroupier;   // The dealer's hand.
-          MainBlackjack mainJoueur;     // The user's hand.
+             
+          Paquet paquet;                 
+          MainBlackjack mainCroupier;   
+          MainBlackjack mainJoueur;     
           
           paquet = new Paquet();
           mainCroupier = new MainBlackjack();
           mainJoueur = new MainBlackjack();
           double mise=2000000; 
     
-          /*  Shuffle the deck, then deal two cards to each player. */
+          
           
           paquet.mélanger();
           mainCroupier.ajouterCarte(paquet.tirerCarte() );
@@ -109,9 +103,7 @@ import java.util.InputMismatchException ;
           System.out.println("");
           System.out.println("");
           
-          /* Check if one of the players has Blackjack (two cards totaling to 21).
-             The player with Blackjack wins the game.  Dealer wins ties.
-          */
+        
           System.out.println("Vous avez " + argent + " dollars.");
             
                 System.out.println("Combien voulez vous miser ?");
@@ -165,15 +157,11 @@ import java.util.InputMismatchException ;
                return argent;
           }
           
-          /*  If neither player has Blackjack, play the game.  First the user 
-              gets a chance to draw cards (i.e., to "Hit").  The while loop ends 
-              when the user chooses to "Stand".  If the user goes over 21,
-              the user loses immediately.
-          */
+          
           
           while (true) {
               
-               /* Display user's cards, and let user decide to Hit or Stand. */
+         
     
                System.out.println("");
                System.out.println("");
@@ -197,16 +185,14 @@ import java.util.InputMismatchException ;
                } 
                while (action != 'T' && action != 'P');
     
-               /* If the user Hits, the user gets a card.  If the user Stands,
-                  the loop ends (and it's the dealer's turn to draw cards).
-               */
+              
     
                if ( action == 'P' ) {
-                       // Loop ends; user is done taking cards.
+                       
                    break;
                }
-               else {  // userAction is 'H'.  Give the user a card.  
-                       // If the user goes over 21, the user loses.
+               else {  
+                   
                    Carte nouvelleCarte = paquet.tirerCarte();
                    mainJoueur.ajouterCarte(nouvelleCarte);
                    System.out.println("");
@@ -224,13 +210,8 @@ import java.util.InputMismatchException ;
                    }
                }
                
-          } // end while loop
+          } 
           
-          /* If we get to this point, the user has Stood with 21 or less.  Now, it's
-             the dealer's chance to draw.  Dealer draws cards until the dealer's
-             total is > 16.  If dealer goes over 21, the dealer loses.
-          */
-    
           System.out.println("");
          System.out.println("Le joueur passe");
           System.out.println("Les cartes du croupier sont");
@@ -250,8 +231,7 @@ import java.util.InputMismatchException ;
           }
          System.out.println("Le total du croupier est " + mainCroupier.valeurBlackJack());
           
-          /* If we get to this point, both players have 21 or less.  We
-             can determine the winner by comparing the values of their hands. */
+          
           
           System.out.println("");
           if (mainCroupier.valeurBlackJack() == mainJoueur.valeurBlackJack()) {
@@ -277,7 +257,7 @@ import java.util.InputMismatchException ;
           }
         
           
-       }  // end playBlackjack()
+       }  
     
     
-    } // end class Blackjack
+    } // end classe Blackjack
