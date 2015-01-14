@@ -9,12 +9,12 @@ package Roulette;
  *
  * @author isen
  */
-public class ChoixJoueurList {
+public class ChoixJoueurNumber {
     
     int choix; 
     int mise;
     
-    public ChoixJoueurList(int choix, int mise) {
+    public ChoixJoueurNumber(int choix, int mise) {
         
         this.choix = choix;
         this.mise = mise;

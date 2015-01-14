@@ -5,8 +5,8 @@
  */
 package MenuCasino;
 
+import java.io.IOException;
 import java.util.Scanner;
-
 /**
  *
  * @author isen
@@ -27,9 +27,9 @@ public class Menu {
           while(quitter==false) {
       System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
       
-       jeux = sc.nextInt();
-     
+      jeux = sc.nextInt();
        
+   
        switch(jeux) {
            case 1:
         Blackjack.Blackjack.Jouer(argent);

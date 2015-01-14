@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ChoixJoueur {
     
-     List<ChoixJoueurList> number = new ArrayList();
+     List<ChoixJoueurNumber> number = new ArrayList();
     public boolean choixPair = false;
     public boolean choixImpair = false;
     public boolean choixNoir = false;
