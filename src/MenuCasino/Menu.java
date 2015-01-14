@@ -7,6 +7,7 @@ package MenuCasino;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.InputMismatchException ;
 /**
  *
  * @author isen
@@ -25,11 +26,18 @@ public class Menu {
          Scanner sc = new Scanner(System.in);
          
           while(quitter==false) {
-      System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
       
+            
+      System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
+        while(jeux!=1 && jeux!=2 && jeux!=3 && jeux!=4){
+      try {
       jeux = sc.nextInt();
-       
-   
+      } 
+      catch (InputMismatchException e) {
+          System.out.println("Veuillez rentrer 1, 2, 3 ou 4"); 
+          sc.nextLine();
+   }
+              }
        switch(jeux) {
            case 1:
         Blackjack.Blackjack.Jouer(argent);
