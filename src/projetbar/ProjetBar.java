@@ -11,15 +11,14 @@ package projetbar;
  */
 public class ProjetBar {
 
-  
     public static void Jouer(double argent) {
-        
-      Bar bar = new Bar();
-      PorteMonnaie.argent=argent;    // On met l'argent du joueur dans le porte monnaie du bar
-      bar.choixJoueur();
-      
-      MenuCasino.Menu.argent=PorteMonnaie.argent;  // On récolte l'argent perdu ou gagner
-      
+
+        Bar bar = new Bar();
+        PorteMonnaie.argent = argent;    // On met l'argent du joueur dans le porte monnaie du bar
+        bar.choixJoueur();
+
+        MenuCasino.Menu.argent = PorteMonnaie.argent;  // On récolte l'argent perdu ou gagner
+
     }
-    
+
 }

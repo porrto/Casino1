@@ -10,21 +10,18 @@ package Roulette;
  * @author isen
  */
 public class PorteMonnaie {
+
     public static double argent;
-    
-    
+
     public static void gainArgent(int gain) {
-        
-        argent=argent + gain;
-    }
-    
-    public static void miseArgent(int mise) {
-        
-         argent=argent- mise;
-        
-    }
-    
-   
-     
+
+        argent = argent + gain;
     }
 
+    public static void miseArgent(int mise) {
+
+        argent = argent - mise;
+
+    }
+
+}

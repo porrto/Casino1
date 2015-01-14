@@ -13,27 +13,25 @@ import java.util.List;
  * @author isen
  */
 public class ChoixJoueur {
-    
-     List<ChoixJoueurNumber> number = new ArrayList();
+
+    List<ChoixJoueurNumber> number = new ArrayList();
     public boolean choixPair = false;
     public boolean choixImpair = false;
     public boolean choixNoir = false;
     public boolean choixRouge = false;
-    
-  
+
     public int misePair = 0;
     public int miseImpair = 0;
     public int miseNoir = 0;
     public int miseRouge = 0;
-   
-  /*  public List<ChoixJoueurList> setNumberList(int choix, int mise) {
+
+    /*  public List<ChoixJoueurList> setNumberList(int choix, int mise) {
         
-        ChoixJoueurList list = new ChoixJoueurList(choix, mise);
+     ChoixJoueurList list = new ChoixJoueurList(choix, mise);
         
-        List<ChoixJoueurList> number = new ArrayList();
+     List<ChoixJoueurList> number = new ArrayList();
        
         
         
-    }*/
-    
+     }*/
 }

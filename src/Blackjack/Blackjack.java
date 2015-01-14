@@ -4,260 +4,234 @@
  * and open the template in the editor.
  */
 package Blackjack;
+
 import java.io.IOException;
-import java.util.Scanner ;
-import java.util.InputMismatchException ;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
 /**
  *
  * @author isen
  */
- /*
-       This program lets the user play Blackjack.  The computer
-       acts as the dealer.  The user has a stake of $100, and
-       makes a bet on each game.  The user can leave at any time,
-       or will be kicked out when he loses all the money.
-       House rules:  The dealer hits on a total of 16 or less
-       and stands on a total of 17 or more.  Dealer wins ties.
-       A new deck of cards is used for each game.
-    */
-    
-    public class Blackjack {
-       
-        
-       public static void Jouer(double argent) {
-       
-                
-          
-          System.out.println("Bienvenue à la table de BlackJack");
-          System.out.println("");
-          
-         // On commence 
-       
-          
-              if (argent == 0) {
-                 System.out.println("Vous n'avez plus d'argent!");
-                 
-              }
-          
-          
-          System.out.println("");
-          System.out.println("Il vous reste $" + argent + '.');
-       
-           jouerBlackjack(argent) ;
-         
-    } // fin main
-       
-       static void question(double argent){
-           
-            if (argent == 0) {
-                 System.out.println("Vous n'avez plus d'argent!");
-                 System.out.println("Vous quittez la table avec " + argent +"$") ;
-              }
-               
-               else {
-          System.out.println("Continuer (C) ou Arrêter (A) ?");
-               char choix ='?';
-              // Réponse utilisateur.
-               do { 
-                   try { choix = (char) System.in.read(); }
-                   catch (IOException e){
-                    System.out.println("Error reading from user");
-                    } 
-               if (choix != 'C' && choix != 'A'){
-                   System.out.println("Veuillez entrer C ou A") ; }
-               } 
-               while (choix != 'C' && choix != 'A');
-    
-           
-    
-               if ( choix == 'C' ) {
-                        
-                   jouerBlackjack(argent);
-               }
-               else {
-                   
-                   System.out.println("Vous quittez la table avec " + argent +"$") ;
-                     MenuCasino.Menu.argent=argent;
-               }
-       } }
-       
-       static double jouerBlackjack(double argent) {
-             
-          Paquet paquet;                 
-          MainBlackjack mainCroupier;   
-          MainBlackjack mainJoueur;     
-          
-          paquet = new Paquet();
-          mainCroupier = new MainBlackjack();
-          mainJoueur = new MainBlackjack();
-          double mise=2000000; 
-    
-          
-          
-          paquet.mélanger();
-          mainCroupier.ajouterCarte(paquet.tirerCarte() );
-          mainCroupier.ajouterCarte(paquet.tirerCarte() );
-          mainJoueur.ajouterCarte(paquet.tirerCarte() );
-          mainJoueur.ajouterCarte(paquet.tirerCarte() );
-          
-          System.out.println("");
-          System.out.println("");
-          
-        
-          System.out.println("Vous avez " + argent + " dollars.");
-            
-                System.out.println("Combien voulez vous miser ?");
-                
-                 Scanner sc = new Scanner(System.in);
+/*
+ This program lets the user play Blackjack.  The computer
+ acts as the dealer.  The user has a stake of $100, and
+ makes a bet on each game.  The user can leave at any time,
+ or will be kicked out when he loses all the money.
+ House rules:  The dealer hits on a total of 16 or less
+ and stands on a total of 17 or more.  Dealer wins ties.
+ A new deck of cards is used for each game.
+ */
 
-                 while (mise > argent || mise <= 0) {
-                     mise=2000000;
-                    try {
-                     mise= (double) sc.nextDouble();
-                 
-                }
-                
-                
-                catch (InputMismatchException e){
-               
-                     System.out.println("Vous ne pouvez pas miser cette somme");
-                     System.out.println("Combien voulez vous miser ?");
-                     sc.next();
-                 
-                }
-                    if (mise > argent || mise <=0){
-                        System.out.println("Vous ne pouvez pas miser cette somme");
-                     System.out.println("Combien voulez vous miser ?");
-                                     }
-                 }
-                 
-                 
-                 
-          if (mainCroupier.valeurBlackJack() == 21) {
-               System.out.println("Le croupier a " + mainCroupier.selectionnerCarte(0)
-                                       + " et " + mainCroupier.selectionnerCarte(1) + ".");
-               System.out.println("Le joueur a " + mainJoueur.selectionnerCarte(0)
-                                         + " et " + mainJoueur.selectionnerCarte(1) + ".");
-               System.out.println("");
-               System.out.println("Le croupier a un Blackjack. Le croupier gagne.");
-               argent = argent - mise ;
-               question(argent);
-               return argent;
-          }
-          
-          if (mainJoueur.valeurBlackJack() == 21) {
-               System.out.println("Le croupier a " + mainCroupier.selectionnerCarte(0)
-                                       + " et " + mainCroupier.selectionnerCarte(1) + ".");
-               System.out.println("Le joueur a " + mainJoueur.selectionnerCarte(0)
-                                         + " et " + mainJoueur.selectionnerCarte(1) + ".");
-               System.out.println("");
-              System.out.println("Vous avez un Blackjack. Vous gagnez.");
-              argent = argent + mise*1.5 ;
-              question(argent);
-               return argent;
-          }
-          
-          
-          
-          while (true) {
-              
-         
-    
-               System.out.println("");
-               System.out.println("");
-              System.out.println("Vos cartes sont");
-               for ( int i = 0; i < mainJoueur.nombreDeCartes(); i++ )
-                  System.out.println("    " + mainJoueur.selectionnerCarte(i));
-               System.out.println("Le total est de " + mainJoueur.valeurBlackJack());
-               System.out.println("");
-               System.out.println("Le croupier montre " + mainCroupier.selectionnerCarte(0));
-               System.out.println("");
-              System.out.println("Tirer (T) ou Passer (P)? ");
-               char action ='?';
-              // User's response, 'H' or 'S'.
-               do { 
-                   try { action = (char) System.in.read(); }
-                   catch (IOException e){
+public class Blackjack {
+
+    public static void Jouer(double argent) {
+
+        System.out.println("Bienvenue à la table de BlackJack");
+        System.out.println("");
+
+         // On commence 
+        if (argent == 0) {
+            System.out.println("Vous n'avez plus d'argent!");
+
+        }
+
+        System.out.println("");
+        System.out.println("Il vous reste $" + argent + '.');
+
+        jouerBlackjack(argent);
+
+    } // fin main
+
+    static void question(double argent) {
+
+        if (argent == 0) {
+            System.out.println("Vous n'avez plus d'argent!");
+            System.out.println("Vous quittez la table avec " + argent + "$");
+        } else {
+            System.out.println("Continuer (C) ou Arrêter (A) ?");
+            char choix = '?';
+            // Réponse utilisateur.
+            do {
+                try {
+                    choix = (char) System.in.read();
+                } catch (IOException e) {
                     System.out.println("Error reading from user");
-                    } 
-               if (action != 'T' && action != 'P')
-                   System.out.println("Veuillez entrer T ou P") ;
-               } 
-               while (action != 'T' && action != 'P');
-    
-              
-    
-               if ( action == 'P' ) {
-                       
-                   break;
-               }
-               else {  
-                   
-                   Carte nouvelleCarte = paquet.tirerCarte();
-                   mainJoueur.ajouterCarte(nouvelleCarte);
-                   System.out.println("");
-                   System.out.println("Le joueur tire");
-                   System.out.println("Votre carte est " + nouvelleCarte);
-                   System.out.println("Votre total est maintenant de" + mainJoueur.valeurBlackJack());
-                   if (mainJoueur.valeurBlackJack() > 21) {
-                       System.out.println("");
-                       System.out.println("Vous avez dépassé 21.  Vous avez perdu.");
-                       System.out.println("L'autre carte du croupier était " 
-                                                          + mainCroupier.selectionnerCarte(1));
-                       argent = argent - mise ;
-                       question(argent);
-                       return argent;  
-                   }
-               }
-               
-          } 
-          
-          System.out.println("");
-         System.out.println("Le joueur passe");
-          System.out.println("Les cartes du croupier sont");
-          System.out.println("   " + mainCroupier.selectionnerCarte(0));
-          System.out.println("    " + mainCroupier.selectionnerCarte(1));
-          while (mainCroupier.valeurBlackJack() <= 16) {
-             Carte newCard = paquet.tirerCarte();
-             System.out.println("Le croupier tire " + newCard);
-             mainCroupier.ajouterCarte(newCard);
-             if (mainCroupier.valeurBlackJack() > 21) {
+                }
+                if (choix != 'C' && choix != 'A') {
+                    System.out.println("Veuillez entrer C ou A");
+                }
+            } while (choix != 'C' && choix != 'A');
+
+            if (choix == 'C') {
+
+                jouerBlackjack(argent);
+            } else {
+
+                System.out.println("Vous quittez la table avec " + argent + "$");
+                MenuCasino.Menu.argent = argent;
+            }
+        }
+    }
+
+    static double jouerBlackjack(double argent) {
+
+        Paquet paquet;
+        MainBlackjack mainCroupier;
+        MainBlackjack mainJoueur;
+
+        paquet = new Paquet();
+        mainCroupier = new MainBlackjack();
+        mainJoueur = new MainBlackjack();
+        double mise = 2000000;
+
+        paquet.mélanger();
+        mainCroupier.ajouterCarte(paquet.tirerCarte());
+        mainCroupier.ajouterCarte(paquet.tirerCarte());
+        mainJoueur.ajouterCarte(paquet.tirerCarte());
+        mainJoueur.ajouterCarte(paquet.tirerCarte());
+
+        System.out.println("");
+        System.out.println("");
+
+        System.out.println("Vous avez " + argent + " dollars.");
+
+        System.out.println("Combien voulez vous miser ?");
+
+        Scanner sc = new Scanner(System.in);
+
+        while (mise > argent || mise <= 0) {
+            mise = 2000000;
+            try {
+                mise = (double) sc.nextDouble();
+
+            } catch (InputMismatchException e) {
+
+                System.out.println("Vous ne pouvez pas miser cette somme");
+                System.out.println("Combien voulez vous miser ?");
+                sc.next();
+
+            }
+            if (mise > argent || mise <= 0) {
+                System.out.println("Vous ne pouvez pas miser cette somme");
+                System.out.println("Combien voulez vous miser ?");
+            }
+        }
+
+        if (mainCroupier.valeurBlackJack() == 21) {
+            System.out.println("Le croupier a " + mainCroupier.selectionnerCarte(0)
+                    + " et " + mainCroupier.selectionnerCarte(1) + ".");
+            System.out.println("Le joueur a " + mainJoueur.selectionnerCarte(0)
+                    + " et " + mainJoueur.selectionnerCarte(1) + ".");
+            System.out.println("");
+            System.out.println("Le croupier a un Blackjack. Le croupier gagne.");
+            argent = argent - mise;
+            question(argent);
+            return argent;
+        }
+
+        if (mainJoueur.valeurBlackJack() == 21) {
+            System.out.println("Le croupier a " + mainCroupier.selectionnerCarte(0)
+                    + " et " + mainCroupier.selectionnerCarte(1) + ".");
+            System.out.println("Le joueur a " + mainJoueur.selectionnerCarte(0)
+                    + " et " + mainJoueur.selectionnerCarte(1) + ".");
+            System.out.println("");
+            System.out.println("Vous avez un Blackjack. Vous gagnez.");
+            argent = argent + mise * 1.5;
+            question(argent);
+            return argent;
+        }
+
+        while (true) {
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("Vos cartes sont");
+            for (int i = 0; i < mainJoueur.nombreDeCartes(); i++) {
+                System.out.println("    " + mainJoueur.selectionnerCarte(i));
+            }
+            System.out.println("Le total est de " + mainJoueur.valeurBlackJack());
+            System.out.println("");
+            System.out.println("Le croupier montre " + mainCroupier.selectionnerCarte(0));
+            System.out.println("");
+            System.out.println("Tirer (T) ou Passer (P)? ");
+            char action = '?';
+            // User's response, 'H' or 'S'.
+            do {
+                try {
+                    action = (char) System.in.read();
+                } catch (IOException e) {
+                    System.out.println("Error reading from user");
+                }
+                if (action != 'T' && action != 'P') {
+                    System.out.println("Veuillez entrer T ou P");
+                }
+            } while (action != 'T' && action != 'P');
+
+            if (action == 'P') {
+
+                break;
+            } else {
+
+                Carte nouvelleCarte = paquet.tirerCarte();
+                mainJoueur.ajouterCarte(nouvelleCarte);
+                System.out.println("");
+                System.out.println("Le joueur tire");
+                System.out.println("Votre carte est " + nouvelleCarte);
+                System.out.println("Votre total est maintenant de" + mainJoueur.valeurBlackJack());
+                if (mainJoueur.valeurBlackJack() > 21) {
+                    System.out.println("");
+                    System.out.println("Vous avez dépassé 21.  Vous avez perdu.");
+                    System.out.println("L'autre carte du croupier était "
+                            + mainCroupier.selectionnerCarte(1));
+                    argent = argent - mise;
+                    question(argent);
+                    return argent;
+                }
+            }
+
+        }
+
+        System.out.println("");
+        System.out.println("Le joueur passe");
+        System.out.println("Les cartes du croupier sont");
+        System.out.println("   " + mainCroupier.selectionnerCarte(0));
+        System.out.println("    " + mainCroupier.selectionnerCarte(1));
+        while (mainCroupier.valeurBlackJack() <= 16) {
+            Carte newCard = paquet.tirerCarte();
+            System.out.println("Le croupier tire " + newCard);
+            mainCroupier.ajouterCarte(newCard);
+            if (mainCroupier.valeurBlackJack() > 21) {
                 System.out.println("");
                 System.out.println("Le dealer a dépassé 21.  Vous avez gagné.");
-                argent = argent + mise ;
+                argent = argent + mise;
                 question(argent);
                 return argent;
-             }
-          }
-         System.out.println("Le total du croupier est " + mainCroupier.valeurBlackJack());
-          
-          
-          
-          System.out.println("");
-          if (mainCroupier.valeurBlackJack() == mainJoueur.valeurBlackJack()) {
+            }
+        }
+        System.out.println("Le total du croupier est " + mainCroupier.valeurBlackJack());
+
+        System.out.println("");
+        if (mainCroupier.valeurBlackJack() == mainJoueur.valeurBlackJack()) {
             System.out.println("Egalité. Le croupier gagne. Vous avez perdu.");
-            argent = argent - mise ;
+            argent = argent - mise;
             question(argent);
-             return argent;
-          }
-          else if (mainCroupier.valeurBlackJack() > mainJoueur.valeurBlackJack()) {
-             System.out.println("Le croupier gagne " + mainCroupier.valeurBlackJack() 
-                              + " points à " + mainJoueur.valeurBlackJack() + ".");
-             argent = argent - mise ;
-             question(argent);
-             return argent;
-          }
-          else {
-             System.out.println("Vous gagnez " + mainJoueur.valeurBlackJack() 
-                              + " points à " + mainCroupier.valeurBlackJack() + ".");
-             
-             argent = argent + mise ;
-             question(argent);
-             return argent;
-          }
-        
-          
-       }  
-    
-    
-    } // end classe Blackjack
+            return argent;
+        } else if (mainCroupier.valeurBlackJack() > mainJoueur.valeurBlackJack()) {
+            System.out.println("Le croupier gagne " + mainCroupier.valeurBlackJack()
+                    + " points à " + mainJoueur.valeurBlackJack() + ".");
+            argent = argent - mise;
+            question(argent);
+            return argent;
+        } else {
+            System.out.println("Vous gagnez " + mainJoueur.valeurBlackJack()
+                    + " points à " + mainCroupier.valeurBlackJack() + ".");
+
+            argent = argent + mise;
+            question(argent);
+            return argent;
+        }
+
+    }
+
+} // end classe Blackjack

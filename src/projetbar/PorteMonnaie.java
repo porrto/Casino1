@@ -10,18 +10,18 @@ package projetbar;
  * @author isen
  */
 public class PorteMonnaie {
-    public static double argent=20;
-    
+
+    public static double argent = 20;
+
     public static void gainArgent(int gain) {
-        
-        argent=argent + gain;
+
+        argent = argent + gain;
     }
-    
+
     public static void miseArgent(int mise) {
-        
-         argent=argent- mise;
-        
-    }
+
+        argent = argent - mise;
 
     }
 
+}

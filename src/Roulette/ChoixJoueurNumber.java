@@ -10,15 +10,15 @@ package Roulette;
  * @author isen
  */
 public class ChoixJoueurNumber {
-    
-    int choix; 
+
+    int choix;
     int mise;
-    
+
     public ChoixJoueurNumber(int choix, int mise) {
-        
+
         this.choix = choix;
         this.mise = mise;
-        
+
     }
-    
+
 }
