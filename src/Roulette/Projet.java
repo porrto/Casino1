@@ -19,19 +19,20 @@ public class Projet {
      */
     public static void Jouer(double argent) {
 
-
-        System.out.println("Vous disposez de" + argent);
+       
+     
+       System.out.println("Vous disposez de" + argent +"     " );
       Roulette rou = new Roulette();
         
-             Random rand = new Random();
-             nombre= rand.nextInt(37);
+      
+        
         PorteMonnaie.argent=argent;
-       rou.getSreenRoulette();
+       rou.initRoulette();
        MenuCasino.Menu.argent=PorteMonnaie.argent;
        
   
            }
- 
-
-       
+            
+          
+        
 }
