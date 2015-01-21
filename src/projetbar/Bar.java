@@ -61,8 +61,8 @@ public class Bar {
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Cocktail voulez-vous ? ");
 
-        for (Food elem : cocktails.setUpCocktails()) {
-            System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
+        for (Boisson elem : cocktails.setUpCocktails()) {
+            System.out.println(elem.name + "   " + elem.price + "   (" + elem.taux + "°)"  + "   (" + elem.number + ")");
         }
 
         try {
@@ -78,7 +78,7 @@ public class Bar {
             this.choixCocktails(cocktails);
         } else {
 
-            for (Food elem : cocktails.setUpCocktails()) {
+            for (Boisson  elem : cocktails.setUpCocktails()) {
 
                 if (choixBoisson == elem.number) {
                     verifArgent(elem.price, elem.taux);
@@ -92,7 +92,7 @@ public class Bar {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Soda voulez-vous ? ");
-        for (Food elem : soda.setUpSoda()) {
+       for (Boisson elem : soda.setUpSoda()) {
             System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
         }
 
@@ -108,7 +108,7 @@ public class Bar {
             this.choixSoda(soda);
         } else {
 
-            for (Food elem : soda.setUpSoda()) {
+        for (Boisson elem : soda.setUpSoda()) {
 
                 if (choixBoisson == elem.number) {
                     verifArgent(elem.price, 0);
@@ -121,7 +121,7 @@ public class Bar {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Alcool voulez-vous ? ");
-        for (Food elem : alcool.setUpAlcool()) {
+    for (Boisson elem : alcool.setUpAlcool()) {
             System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
         }
         try {
@@ -136,7 +136,7 @@ public class Bar {
             this.choixAlcools(alcool);
         } else {
 
-            for (Food elem : alcool.setUpAlcool()) {
+        for (Boisson elem : alcool.setUpAlcool()) {
 
                 if (choixBoisson == elem.number) {
                     verifArgent(elem.price, elem.taux);

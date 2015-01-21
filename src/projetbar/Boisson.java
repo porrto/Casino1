@@ -9,14 +9,14 @@ package projetbar;
  *
  * @author isen
  */
-public class Food {
+public class Boisson {
 
     public String name;
     public int price;
     public double taux = 0.20;
     public int number;
 
-    public Food(String name, int price, int number) {
+    public Boisson(String name, int price, int number) {
         this.name = name;
         this.price = price;
         this.number = number;

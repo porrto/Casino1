@@ -19,12 +19,14 @@ public class Roulette {
 // public String choixcouleur="";
 // public String choixparité;
 // public int  choixmise;
-    public void initRoulette() {
+   public void initRoulette(double argent) {
 
         ChoixJoueur joueur = new ChoixJoueur();
         SetRoulette tirage = new SetRoulette();
-
+        PorteMonnaie.argent = argent;   // On met l'argent dans le porte monnaie de  la roulette
+        System.out.println("Vous disposez de" + argent + "     ");
         this.choixJoueur(tirage, joueur);
+                 
     }
 
     public void choixJoueur(SetRoulette tirage, ChoixJoueur joueur) {
@@ -65,10 +67,11 @@ public class Roulette {
 
                             if (choixnouvellepartie.equals("Y")) {
                                 System.out.println("Vous disposez maintenant de " + PorteMonnaie.argent + "euros");
-                                this.initRoulette();
+                                this.initRoulette(PorteMonnaie.argent);
                             } else {
                                 if (choixnouvellepartie.equals("N")) {
                                     System.out.println("Vous quittez la table");
+                                    MenuCasino.Menu.argent = PorteMonnaie.argent;          // Lorsque qu'on arrête la roulette, l'argent est récupéré
                                 } else {
                                     System.out.println("Veuillez entrer Y ou N ");
                                     this.choixJoueur(tirage, joueur);
