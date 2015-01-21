@@ -19,13 +19,13 @@ public class SetUpBoisson {
 
         Boisson vodka = new Boisson("vodka", 6, 1);
         Boisson martini = new Boisson("martini", 6, 2);
-        Boisson wiskie = new Boisson("wiskie", 6, 3);
+        Boisson whisky = new Boisson("wiskie", 6, 3);
 
         List<Boisson> listAlcool = new ArrayList();
 
         listAlcool.add(vodka);
         listAlcool.add(martini);
-        listAlcool.add(wiskie);
+        listAlcool.add(whisky);
 
         return listAlcool;
 
