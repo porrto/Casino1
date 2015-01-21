@@ -54,7 +54,8 @@ public class Menu {
                     break;
 
                 case 4:
-                    projetbar.ProjetBar.Jouer(argent);
+                    projetbar.Bar bar = new projetbar.Bar();
+                   bar.initBar(argent);
 
                     break;
                     

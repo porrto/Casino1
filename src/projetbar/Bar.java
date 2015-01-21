@@ -21,7 +21,15 @@ public class Bar {
     public int choixverre;
     public boolean pass;
 
-    public void choixJoueur() {
+    public void initBar(double argent) {
+        
+         PorteMonnaie.argent = argent;    // On met l'argent du joueur dans le porte monnaie du bar
+         this.choixJoueur(argent);
+
+         MenuCasino.Menu.argent = PorteMonnaie.argent;  // On récolte l'argent perdu ou gagner
+    }
+    
+    public void choixJoueur(double argent) {
 
         SetUpBoisson boisson = new SetUpBoisson();
 
@@ -32,10 +40,10 @@ public class Bar {
             this.fired();
         } else {
 
-            System.out.println("Voulez vous un Cocktail (C), un Soft (S) ou un Alcool fort (A) ? ");
+            System.out.println("Voulez vous un Cocktail (C), un Soft (S), un Alcool fort (A), sortir du bar (R) ? ");
             choixBar = sc.next();
 
-            if (choixBar.equals("C") || choixBar.equals("S") || choixBar.equals("A")) {
+            if (choixBar.equals("C") || choixBar.equals("S") || choixBar.equals("A") || choixBar.equals("R") ) {
                 switch (choixBar) {
 
                     case "C":
@@ -47,10 +55,13 @@ public class Bar {
                     case "A":
                         choixAlcools(boisson);
                         break;
+                        
+                    case "R":
+                        System.out.println("Vous sortez du bar");
                 }
             } else {
                 System.out.println("Vous n'avez pas rentrée C, S ou A ");
-                this.choixJoueur();
+                this.choixJoueur(PorteMonnaie.argent);
 
             }
         }
@@ -149,17 +160,17 @@ public class Bar {
 
         if (PorteMonnaie.argent - prix < 0) {
             System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + PorteMonnaie.argent);
-            this.choixJoueur();
+            this.choixJoueur(PorteMonnaie.argent);
         } else {
 
             Alcoolémie.verifTaux(taux);
             if (Alcoolémie.drink == true) {
                 PorteMonnaie.miseArgent(prix);
                 System.out.println("Il vous reste  " + PorteMonnaie.argent);
-                this.choixJoueur();
+                this.choixJoueur(PorteMonnaie.argent);
 
             } else {
-                this.choixJoueur();
+                this.choixJoueur(PorteMonnaie.argent);
             }
         }
 
