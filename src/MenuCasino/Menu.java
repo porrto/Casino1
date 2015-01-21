@@ -14,7 +14,7 @@ import java.util.InputMismatchException;
  */
 public class Menu {
 
-    public static double argent = 40;
+    public static double argent = 50;
     public static boolean quitter = false;
     public static boolean fired = false;
     public static int jeux;
