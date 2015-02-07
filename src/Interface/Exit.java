@@ -12,4 +12,5 @@ package Interface;
 public interface Exit {
     
     public void Quitter();
+
 }

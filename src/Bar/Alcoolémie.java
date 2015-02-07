@@ -5,6 +5,7 @@
  */
 package Bar;
 
+import MenuCasino.Player;
 import java.util.Scanner;
 
 /**
@@ -12,8 +13,7 @@ import java.util.Scanner;
  * @author isen
  */
 public abstract class Alcoolémie {
-
-    static double taux = 0;
+  
     static boolean positif = false;
     static boolean drink = false;
     static boolean soul = false;
@@ -23,12 +23,12 @@ public abstract class Alcoolémie {
         Scanner sc = new Scanner(System.in);
 
         if (positif == false) {
-            if (taux + ref > 0.5) {
+            if (Player.tauxalcool + ref > 0.5) {
                 System.out.println("Attention vous avez dépassé la limite autorisé pour conduire, voulez vous boire ce verre (Y) or (N) ?");
                 String choix = sc.next();
                 switch (choix) {
                     case "Y":
-                        taux = taux + ref;
+                        Player.tauxalcool = Player.tauxalcool + ref;
                         positif = true;
                         drink = true;
                         break;
@@ -43,16 +43,16 @@ public abstract class Alcoolémie {
 
             } else {
                 positif = false;
-                taux = taux + ref;
+                Player.tauxalcool = Player.tauxalcool + ref;
                 drink = true;
             }
 
         } else {
-            if (taux < 1) {
-                taux = taux + ref;
+            if (Player.tauxalcool < 1) {
+                Player.tauxalcool = Player.tauxalcool + ref;
                 drink = true;
             } else {
-                taux = taux + ref;
+                Player.tauxalcool = Player.tauxalcool + ref;
                 drink = true;
                 soul = true;
             }

@@ -12,10 +12,10 @@ package MenuCasino;
 public class Player {
     
     public static double argent;
-    public static double alcoolémie;
+    public static double tauxalcool;
     
     public Player(double argent, double alcoolémie) {
         this.argent = argent;
-        this.alcoolémie = alcoolémie;
+        this.tauxalcool = alcoolémie;
     }
 }

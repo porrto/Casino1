@@ -236,6 +236,7 @@ public class Blackjack implements Exit {
 
     }
     
+    @Override
     public void Quitter() {
           System.out.println("Vous quittez la table avec " + Player.argent + "$");
          // MenuCasino.ChoixMenu.argent = argent;
