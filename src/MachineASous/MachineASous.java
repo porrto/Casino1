@@ -5,6 +5,7 @@
  */
 package MachineASous;
 
+import MenuCasino.Player;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -18,29 +19,29 @@ public class MachineASous {
     /**
      * @param argent
      */
-    public static void Jouer(double argent) {
+    public  void Jouer() {
         // TODO code application logic here
 
         System.out.println("Bienvenue à la machine à sous");
         System.out.println("");
 
-        if (argent == 0) {
+        if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
 
         }
 
         System.out.println("");
-        System.out.println("Il vous reste $" + argent + '.');
+        System.out.println("Il vous reste $" + Player.argent + '.');
 
-        jouerMachineASous(argent);
+        jouerMachineASous();
 
     }
 
-    static void question(double argent) {
+    public void question() {
 
-        if (argent == 0) {
+        if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
-            System.out.println("Vous quittez la table avec " + argent + "$");
+            System.out.println("Vous quittez la table avec " + Player.argent + "$");
         } else {
             System.out.println("Continuer (C) ou Arrêter (A) ?");
             char choix = '?';
@@ -61,16 +62,16 @@ public class MachineASous {
              */
             if (choix == 'C') {
                 // Loop ends; user is done taking cards.
-                jouerMachineASous(argent);
+                this.jouerMachineASous();
             } else {
 
-                System.out.println("Vous quittez la table avec " + argent + "$");
-                MenuCasino.ChoixMenu.argent = argent;
+                System.out.println("Vous quittez la table avec " + Player.argent + "$");
+                //MenuCasino.ChoixMenu.argent = argent;
             }
         }
     }
 
-    static double jouerMachineASous(double argent) {
+    public void jouerMachineASous() {
 
         Tableau tirage;
         tirage = new Tableau();
@@ -80,13 +81,13 @@ public class MachineASous {
 
         int mise = 2000000;
 
-        System.out.println("Vous avez " + argent + " dollars.");
+        System.out.println("Vous avez " + Player.argent + " dollars.");
 
         System.out.println("Combien voulez vous miser ?");
 
         Scanner sc = new Scanner(System.in);
 
-        while (mise > argent || mise <= 0) {
+        while (mise > Player.argent || mise <= 0) {
             mise = 2000000;
             try {
                 mise = (int) sc.nextInt();
@@ -113,64 +114,65 @@ public class MachineASous {
         if (tirage.cases[0][0] == tirage.cases[1][1] && tirage.cases[0][0] == tirage.cases[2][2]) {
             //diagonale 1
 
-            argent = calculGains(argent, mise, tirage, 0, 0);
+            Player.argent = calculGains(Player.argent, mise, tirage, 0, 0);
 
         }
 
         if (tirage.cases[0][2] == tirage.cases[1][1] && tirage.cases[0][2] == tirage.cases[2][0]) {
             //diagonale 2
 
-            argent = calculGains(argent, mise, tirage, 0, 2);
+            Player.argent = calculGains(Player.argent, mise, tirage, 0, 2);
 
         }
 
         if (tirage.cases[0][0] == tirage.cases[0][1] && tirage.cases[0][0] == tirage.cases[0][2]) {
             //ligne 1
 
-            argent = calculGains(argent, mise, tirage, 0, 0);
+            Player.argent = calculGains(Player.argent, mise, tirage, 0, 0);
 
         }
 
         if (tirage.cases[1][0] == tirage.cases[1][1] && tirage.cases[1][0] == tirage.cases[1][2]) {
             //ligne 2
 
-            argent = calculGains(argent, mise, tirage, 1, 0);
+            Player.argent = calculGains(Player.argent, mise, tirage, 1, 0);
 
         }
 
         if (tirage.cases[2][0] == tirage.cases[2][1] && tirage.cases[2][0] == tirage.cases[2][2]) {
             //ligne 3
 
-            argent = calculGains(argent, mise, tirage, 2, 0);
+            Player.argent = calculGains(Player.argent, mise, tirage, 2, 0);
 
         }
 
         if (tirage.cases[0][0] == tirage.cases[1][0] && tirage.cases[0][0] == tirage.cases[2][0]) {
             //colonne 1
 
-            argent = calculGains(argent, mise, tirage, 0, 0);
+            Player.argent = calculGains(Player.argent, mise, tirage, 0, 0);
 
         }
 
         if (tirage.cases[0][1] == tirage.cases[1][1] && tirage.cases[0][1] == tirage.cases[2][1]) {
             //colonne 1
 
-            argent = calculGains(argent, mise, tirage, 0, 1);
+            Player.argent = calculGains(Player.argent, mise, tirage, 0, 1);
 
         }
 
         if (tirage.cases[0][2] == tirage.cases[1][2] && tirage.cases[0][2] == tirage.cases[2][2]) {
             //colonne 1
 
-            argent = calculGains(argent, mise, tirage, 0, 2);
+            Player.argent = calculGains(Player.argent, mise, tirage, 0, 2);
 
         } else {
-            argent = argent - mise;
+            Player.argent = Player.argent - mise;
         }
 
-        System.out.println("Vous avez " + argent + " dollars.");
-        question(argent);
-        return argent;
+        System.out.println("Vous avez " + Player.argent + " dollars.");
+        
+        question();
+        
 
     }
 

@@ -7,7 +7,7 @@ package SetUp;
 
 import java.util.ArrayList;
 import java.util.List;
-import projetbar.Boisson;
+import Bar.Boisson;
 
 /**
  *

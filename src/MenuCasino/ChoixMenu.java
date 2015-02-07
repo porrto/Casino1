@@ -18,10 +18,10 @@ public class ChoixMenu {
     public  static boolean quitter = false;
     public static boolean fired = false;
     public  int jeux;
-    public static double argent;
     
-    public ChoixMenu(double argent){
-        this.argent = argent;
+    
+    public ChoixMenu(){
+       
         this.Start();
     }
     
@@ -44,24 +44,26 @@ public class ChoixMenu {
           //}
             switch (jeux) {
                 case 1:
-                    Blackjack.Blackjack.Jouer(argent);
+                    Blackjack.Blackjack bj = new Blackjack.Blackjack();
+                    bj.Jouer();
 
                     break;
 
                 case 2:
-                    MachineASous.MachineASous.Jouer(argent);
+                    MachineASous.MachineASous machine = new MachineASous.MachineASous();
+                    machine.Jouer();
 
                     break;
 
                 case 3:
                   Roulette.Roulette roulette = new Roulette.Roulette();
-                  roulette.initRoulette(argent);
+                  roulette.initRoulette();
 
                     break;
 
                 case 4:
-                    projetbar.Bar bar = new projetbar.Bar();
-                   bar.initBar(argent);
+                    Bar.Bar bar = new Bar.Bar();
+                   bar.initBar();
 
                     break;
                     

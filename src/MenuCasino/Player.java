@@ -3,25 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Roulette;
+package MenuCasino;
 
 /**
  *
  * @author isen
  */
-public class PorteMonnaie {
-
+public class Player {
+    
     public static double argent;
-
-    public static void gainArgent(int gain) {
-
-        argent = argent + gain;
+    public static double alcoolémie;
+    
+    public Player(double argent, double alcoolémie) {
+        this.argent = argent;
+        this.alcoolémie = alcoolémie;
     }
-
-    public static void miseArgent(int mise) {
-
-        argent = argent - mise;
-
-    }
-
 }

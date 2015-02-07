@@ -5,6 +5,8 @@
  */
 package Blackjack;
 
+import Interface.Exit;
+import MenuCasino.Player;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -23,31 +25,31 @@ import java.util.InputMismatchException;
  A new deck of cards is used for each game.
  */
 
-public class Blackjack {
+public class Blackjack implements Exit {
 
-    public static void Jouer(double argent) {
+    public  void Jouer() {
 
         System.out.println("Bienvenue à la table de BlackJack");
         System.out.println("");
 
          // On commence 
-        if (argent == 0) {
+        if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
 
         }
 
         System.out.println("");
-        System.out.println("Il vous reste $" + argent + '.');
+        System.out.println("Il vous reste $" + Player.argent + '.');
 
-        jouerBlackjack(argent);
+        jouerBlackjack();
 
     } // fin main
 
-    static void question(double argent) {
+    public void question()  {
 
-        if (argent == 0) {
+        if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
-            System.out.println("Vous quittez la table avec " + argent + "$");
+            System.out.println("Vous quittez la table avec " + Player.argent + "$");
         } else {
             System.out.println("Continuer (C) ou Arrêter (A) ?");
             char choix = '?';
@@ -65,16 +67,14 @@ public class Blackjack {
 
             if (choix == 'C') {
 
-                jouerBlackjack(argent);
+                jouerBlackjack();
             } else {
-
-                System.out.println("Vous quittez la table avec " + argent + "$");
-                MenuCasino.ChoixMenu.argent = argent;
+                this.Quitter();
             }
         }
     }
 
-    static double jouerBlackjack(double argent) {
+    public void jouerBlackjack() {
 
         Paquet paquet;
         MainBlackjack mainCroupier;
@@ -94,13 +94,13 @@ public class Blackjack {
         System.out.println("");
         System.out.println("");
 
-        System.out.println("Vous avez " + argent + " dollars.");
+        System.out.println("Vous avez " + Player.argent + " dollars.");
 
         System.out.println("Combien voulez vous miser ?");
 
         Scanner sc = new Scanner(System.in);
 
-        while (mise > argent || mise <= 0) {
+        while (mise > Player.argent || mise <= 0) {
             mise = 2000000;
             try {
                 mise = (double) sc.nextDouble();
@@ -112,7 +112,7 @@ public class Blackjack {
                 sc.next();
 
             }
-            if (mise > argent || mise <= 0) {
+            if (mise > Player.argent || mise <= 0) {
                 System.out.println("Vous ne pouvez pas miser cette somme");
                 System.out.println("Combien voulez vous miser ?");
             }
@@ -125,9 +125,10 @@ public class Blackjack {
                     + " et " + mainJoueur.selectionnerCarte(1) + ".");
             System.out.println("");
             System.out.println("Le croupier a un Blackjack. Le croupier gagne.");
-            argent = argent - mise;
-            question(argent);
-            return argent;
+            Player.argent = Player.argent - mise;
+            
+            question();
+            
         }
 
         if (mainJoueur.valeurBlackJack() == 21) {
@@ -137,9 +138,9 @@ public class Blackjack {
                     + " et " + mainJoueur.selectionnerCarte(1) + ".");
             System.out.println("");
             System.out.println("Vous avez un Blackjack. Vous gagnez.");
-            argent = argent + mise * 1.5;
-            question(argent);
-            return argent;
+            Player.argent = Player.argent + mise * 1.5;
+            question();
+           
         }
 
         while (true) {
@@ -184,9 +185,10 @@ public class Blackjack {
                     System.out.println("Vous avez dépassé 21.  Vous avez perdu.");
                     System.out.println("L'autre carte du croupier était "
                             + mainCroupier.selectionnerCarte(1));
-                    argent = argent - mise;
-                    question(argent);
-                    return argent;
+                    Player.argent = Player.argent - mise;
+                    
+                    question();
+                    
                 }
             }
 
@@ -204,9 +206,9 @@ public class Blackjack {
             if (mainCroupier.valeurBlackJack() > 21) {
                 System.out.println("");
                 System.out.println("Le dealer a dépassé 21.  Vous avez gagné.");
-                argent = argent + mise;
-                question(argent);
-                return argent;
+                  Player.argent = Player.argent + mise;
+                  
+                    question();
             }
         }
         System.out.println("Le total du croupier est " + mainCroupier.valeurBlackJack());
@@ -214,24 +216,29 @@ public class Blackjack {
         System.out.println("");
         if (mainCroupier.valeurBlackJack() == mainJoueur.valeurBlackJack()) {
             System.out.println("Egalité. Le croupier gagne. Vous avez perdu.");
-            argent = argent - mise;
-            question(argent);
-            return argent;
+            Player.argent = Player.argent - mise;
+                    
+                    question();
         } else if (mainCroupier.valeurBlackJack() > mainJoueur.valeurBlackJack()) {
             System.out.println("Le croupier gagne " + mainCroupier.valeurBlackJack()
                     + " points à " + mainJoueur.valeurBlackJack() + ".");
-            argent = argent - mise;
-            question(argent);
-            return argent;
+            Player.argent = Player.argent - mise;
+                    
+                    question();
         } else {
             System.out.println("Vous gagnez " + mainJoueur.valeurBlackJack()
                     + " points à " + mainCroupier.valeurBlackJack() + ".");
 
-            argent = argent + mise;
-            question(argent);
-            return argent;
+          Player.argent = Player.argent + mise;
+                    
+                    question();
         }
 
+    }
+    
+    public void Quitter() {
+          System.out.println("Vous quittez la table avec " + Player.argent + "$");
+         // MenuCasino.ChoixMenu.argent = argent;
     }
 
 } // end classe Blackjack

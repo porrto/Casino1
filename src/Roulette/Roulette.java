@@ -5,13 +5,15 @@
  */
 package Roulette;
 
+import Interface.Exit;
+import MenuCasino.Player;
 import java.util.Scanner;
 
 /**
  *
  * @author isen
  */
-public class Roulette {
+public class Roulette implements Exit {
 
     public String choix;
     public int choixnombre;
@@ -19,12 +21,12 @@ public class Roulette {
 // public String choixcouleur="";
 // public String choixparité;
 // public int  choixmise;
-   public void initRoulette(double argent) {
+   public void initRoulette() {
 
         ChoixJoueur joueur = new ChoixJoueur();
         SetRoulette tirage = new SetRoulette();
-        PorteMonnaie.argent = argent;   // On met l'argent dans le porte monnaie de  la roulette
-        System.out.println("Vous disposez de" + argent + "     ");
+       // PorteMonnaie.argent = argent;   // On met l'argent dans le porte monnaie de  la roulette
+        System.out.println("Vous disposez de" + Player.argent + "     ");
         this.choixJoueur(tirage, joueur);
                  
     }
@@ -59,19 +61,18 @@ public class Roulette {
                         this.verifCouleur(tirage, joueur);
 
                         System.out.println("Le tirage était de couleur " + tirage.SetUpRoulette().color + "de parité" + tirage.SetUpRoulette().parité + "et le nombre" + tirage.SetUpRoulette().number);
-                        System.out.println("Votre porte monnaie est maintenant de" + PorteMonnaie.argent + "euros");
+                        System.out.println("Votre porte monnaie est maintenant de" + Player.argent + "euros");
 
-                        if (PorteMonnaie.argent != 0) {            // On propose au joueur de re-joue s'il lui reste de l'argent
+                        if (Player.argent != 0) {            // On propose au joueur de re-joue s'il lui reste de l'argent
                             System.out.println("Voulez vous rejouez ? (Y) or (N) ");
                             String choixnouvellepartie = sc.next();
 
                             if (choixnouvellepartie.equals("Y")) {
-                                System.out.println("Vous disposez maintenant de " + PorteMonnaie.argent + "euros");
-                                this.initRoulette(PorteMonnaie.argent);
+                                System.out.println("Vous disposez maintenant de " + Player.argent + "euros");
+                                this.initRoulette();
                             } else {
                                 if (choixnouvellepartie.equals("N")) {
-                                    System.out.println("Vous quittez la table");
-                                    MenuCasino.ChoixMenu.argent = PorteMonnaie.argent;          // Lorsque qu'on arrête la roulette, l'argent est récupéré
+                                 this.Quitter();
                                 } else {
                                     System.out.println("Veuillez entrer Y ou N ");
                                     this.choixJoueur(tirage, joueur);
@@ -205,7 +206,7 @@ public class Roulette {
 
         for (ChoixJoueurNumber elem : joueur.number) {
             if (elem.choix == tirage.nombre) {
-                PorteMonnaie.gainArgent(elem.mise * 35);
+                this.gainArgent(elem.mise * 35);
             }
         }
 
@@ -214,10 +215,10 @@ public class Roulette {
     public void verifParité(SetRoulette tirage, ChoixJoueur joueur) {
 
         if (joueur.choixPair == true && tirage.SetUpRoulette().parité == "pair") {
-            PorteMonnaie.gainArgent(joueur.misePair * 2);
+            this.gainArgent(joueur.misePair * 2);
         } else {
             if (joueur.choixImpair == true && tirage.SetUpRoulette().parité == "impair") {
-                PorteMonnaie.gainArgent(joueur.miseImpair * 2);
+                this.gainArgent(joueur.miseImpair * 2);
             }
         }
     }
@@ -225,17 +226,17 @@ public class Roulette {
     public void verifCouleur(SetRoulette tirage, ChoixJoueur joueur) {
 
         if (joueur.choixRouge == true && tirage.SetUpRoulette().color == "rouge") {
-            PorteMonnaie.gainArgent(joueur.miseRouge * 2);
+            this.gainArgent(joueur.miseRouge * 2);
         } else {
             if (joueur.choixNoir == true && tirage.SetUpRoulette().color == "noir") {
-                PorteMonnaie.gainArgent(joueur.miseNoir * 2);
+                this.gainArgent(joueur.miseNoir * 2);
             }
         }
     }
 
     public void montantMise(String jeux, ChoixJoueur joueur) {
 
-        if (PorteMonnaie.argent != 0) {
+        if (Player.argent != 0) {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Combien voulez vous miser?");
@@ -263,12 +264,12 @@ public class Roulette {
 
     public void verifMise(String jeux, int montant, ChoixJoueur joueur) {
 
-        if (PorteMonnaie.argent - montant < 0) {
-            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + PorteMonnaie.argent);
+        if (Player.argent - montant < 0) {
+            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
             this.montantMise(jeux, joueur);
         } else {
-            PorteMonnaie.miseArgent(montant);
-            System.out.println("Il vous reste  " + PorteMonnaie.argent);
+            this.miseArgent(montant);
+            System.out.println("Il vous reste  " + Player.argent);
 
             switch (jeux) {
 
@@ -296,5 +297,22 @@ public class Roulette {
             }
         }
     }
+    
+      public static void gainArgent(int gain) {
+
+        Player.argent = Player.argent + gain;
+    }
+
+    public static void miseArgent(int mise) {
+
+        Player.argent = Player.argent - mise;
+
+    }
+    
+    @Override
+   public void Quitter() {
+          System.out.println("Vous quittez la Roulette");
+          //MenuCasino.ChoixMenu.argent = PorteMonnaie.argent;          // Lorsque qu'on arrête la roulette, l'argent est récupéré
+   }
 
 }

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetbar;
+package Bar;
 
+import Interface.Exit;
+import MenuCasino.Player;
 import SetUp.SetUpBoisson;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,28 +16,28 @@ import java.util.Random;
  *
  * @author isen
  */
-public class Bar {
+public class Bar implements Exit {
 
     public String choixBar;
     public int choixBoisson;
     public int choixverre;
     public boolean pass;
 
-    public void initBar(double argent) {
+    public void initBar() {
         
-         PorteMonnaie.argent = argent;    // On met l'argent du joueur dans le porte monnaie du bar
-         this.choixJoueur(argent);
+         //PorteMonnaie.argent = argent;    // On met l'argent du joueur dans le porte monnaie du bar
+         this.choixJoueur();
 
-         MenuCasino.Menu.argent = PorteMonnaie.argent;  // On récolte l'argent perdu ou gagner
+         //MenuCasino.Menu.argent = PorteMonnaie.argent;  // On récolte l'argent perdu ou gagner
     }
     
-    public void choixJoueur(double argent) {
+    public void choixJoueur() {
 
         SetUpBoisson boisson = new SetUpBoisson();
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Vous avez" + PorteMonnaie.argent);
+        System.out.println("Vous avez" + Player.argent);
         if (Alcoolémie.soul == true) {
             this.fired();
         } else {
@@ -57,12 +59,11 @@ public class Bar {
                         break;
                         
                     case "R":
-                        System.out.println("Vous sortez du bar");
-                        MenuCasino.ChoixMenu.argent = argent;
+                        this.Quitter();
                 }
             } else {
                 System.out.println("Vous n'avez pas rentrée C, S ou A ");
-                this.choixJoueur(PorteMonnaie.argent);
+                this.choixJoueur();
 
             }
         }
@@ -159,19 +160,19 @@ public class Bar {
 
     public void verifArgent(int prix, double taux) {
 
-        if (PorteMonnaie.argent - prix < 0) {
-            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + PorteMonnaie.argent);
-            this.choixJoueur(PorteMonnaie.argent);
+        if (Player.argent - prix < 0) {
+            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
+            this.choixJoueur();
         } else {
 
             Alcoolémie.verifTaux(taux);
             if (Alcoolémie.drink == true) {
-                PorteMonnaie.miseArgent(prix);
-                System.out.println("Il vous reste  " + PorteMonnaie.argent);
-                this.choixJoueur(PorteMonnaie.argent);
+                Player.argent = Player.argent - prix;
+                System.out.println("Il vous reste  " + Player.argent);
+                this.choixJoueur();
 
             } else {
-                this.choixJoueur(PorteMonnaie.argent);
+                this.choixJoueur();
             }
         }
 
@@ -211,6 +212,12 @@ public class Bar {
                 System.out.println("Vous n'avez pas rentré (Y) or (N)");
         }
 
+    }
+    
+    @Override
+    public void Quitter() {
+        System.out.println("Vous sortez du bar");
+        //MenuCasino.ChoixMenu.argent = PorteMonnaie.argent;
     }
 
 }

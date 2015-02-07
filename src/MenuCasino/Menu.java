@@ -14,11 +14,16 @@ import java.util.InputMismatchException;
  */
 public class Menu {
 
-    public static double argent = 50;
+
 
     public static void main(String[] args) {
 
-        ChoixMenu cm = new ChoixMenu(argent);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Combien d'argent avez vous ?");
+        double argent = sc.nextInt();
+        
+        Player player1 = new Player(argent,0);
+        ChoixMenu cm = new ChoixMenu();
         
         System.out.println("Vous partez avec " + argent);
 
