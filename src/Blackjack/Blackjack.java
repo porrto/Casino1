@@ -69,7 +69,7 @@ public class Blackjack {
             } else {
 
                 System.out.println("Vous quittez la table avec " + argent + "$");
-                MenuCasino.Menu.argent = argent;
+                MenuCasino.ChoixMenu.argent = argent;
             }
         }
     }

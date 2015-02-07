@@ -71,7 +71,7 @@ public class Roulette {
                             } else {
                                 if (choixnouvellepartie.equals("N")) {
                                     System.out.println("Vous quittez la table");
-                                    MenuCasino.Menu.argent = PorteMonnaie.argent;          // Lorsque qu'on arrête la roulette, l'argent est récupéré
+                                    MenuCasino.ChoixMenu.argent = PorteMonnaie.argent;          // Lorsque qu'on arrête la roulette, l'argent est récupéré
                                 } else {
                                     System.out.println("Veuillez entrer Y ou N ");
                                     this.choixJoueur(tirage, joueur);
