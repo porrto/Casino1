@@ -5,6 +5,7 @@
  */
 package MachineASous;
 
+import Interface.Exit;
 import MenuCasino.Player;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -14,7 +15,7 @@ import java.util.Scanner;
  *
  * @author isen
  */
-public class MachineASous {
+public class MachineASous implements Exit {
 
     /**
      * @param argent
@@ -65,8 +66,7 @@ public class MachineASous {
                 this.jouerMachineASous();
             } else {
 
-                System.out.println("Vous quittez la table avec " + Player.argent + "$");
-                //MenuCasino.ChoixMenu.argent = argent;
+              this.Quitter();
             }
         }
     }
@@ -207,6 +207,12 @@ public class MachineASous {
         } else {
             return 0;
         }
+    }
+    
+    @Override
+    public  void Quitter() {
+          System.out.println("Vous quittez la table avec " + Player.argent + "$");
+                //MenuCasino.ChoixMenu.argent = argent;
     }
 
 }
