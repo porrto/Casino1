@@ -58,6 +58,7 @@ public class Bar {
                         
                     case "R":
                         System.out.println("Vous sortez du bar");
+                        MenuCasino.ChoixMenu.argent = argent;
                 }
             } else {
                 System.out.println("Vous n'avez pas rentrée C, S ou A ");
