@@ -192,18 +192,18 @@ public class Bar {
 
                 if (pass == true) {
                     System.out.println(" Vous êtes re-rentré dans le casino");
-                    MenuCasino.Menu.fired = true;
+                    MenuCasino.ChoixMenu.fired = true;
 
                 } else {
                     System.out.println("Le videur vous a repéré, désolé");
-                    MenuCasino.Menu.fired = true;
-                    MenuCasino.Menu.quitter = true;
+                    MenuCasino.ChoixMenu.fired = true;
+                    MenuCasino.ChoixMenu.quitter = true;
                 }
                 break;
 
             case "N":
                 System.out.println("au revoir");
-                MenuCasino.Menu.quitter = true;
+                MenuCasino.ChoixMenu.quitter = true;
                 break;
 
             default:
