@@ -7,7 +7,7 @@ package Roulette;
 
 /**
  *
- * @author isen
+ * @author clement
  */
 public class ChoixJoueurNumber {
 

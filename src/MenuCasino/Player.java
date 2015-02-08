@@ -7,7 +7,7 @@ package MenuCasino;
 
 /**
  *
- * @author isen
+ * @author clement
  */
 public class Player {
     

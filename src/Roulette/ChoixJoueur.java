@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author isen
+ * @author clement
  */
 public class ChoixJoueur {
 

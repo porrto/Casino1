@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author isen
+ * @author clement
  */
 public class ChoixMenu {
     
@@ -34,14 +34,14 @@ public class ChoixMenu {
         while (quitter == false) {
 
             System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
-           //while (jeux != 1 && jeux != 2 && jeux != 3 && jeux != 4) {
+          
                 try {
                      jeux = sc.nextInt();
              } catch (InputMismatchException e) {
                  System.out.println("Veuillez rentrer 1, 2, 3 ou 4");
-                 this.Start();
+              
              }
-          //}
+                sc.nextLine();
             switch (jeux) {
                 case 1:
                     Blackjack.Blackjack bj = new Blackjack.Blackjack();
@@ -66,11 +66,6 @@ public class ChoixMenu {
                    bar.initBar();
 
                     break;
-                    
-                default : 
-                    System.out.println("Veuillez entrer 1 , 2 , 3 ou 4");
-                    sc.nextLine();
-
             }
 
             if (fired == false) {

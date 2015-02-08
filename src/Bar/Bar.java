@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 /**
- * @author isen
+ * @author clement
  * 
  * Cette classe va permettre au joueur de choisir une boisson : 
  * <ul>

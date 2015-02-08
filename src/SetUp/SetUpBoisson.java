@@ -11,7 +11,7 @@ import Bar.Boisson;
 
 /**
  *
- * @author isen
+ * @author clement
  * 
  * Permet de construire les différentes listes de boissons qui seront présentes dans la carte
  */

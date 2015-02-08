@@ -6,7 +6,7 @@
 package Bar;
 
 /**
- *  @author isen
+ *  @author clement
  *On asigne à chaque boissons créées leurs paramètres
  * 
  *

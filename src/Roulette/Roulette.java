@@ -7,11 +7,12 @@ package Roulette;
 
 import Interface.Exit;
 import MenuCasino.Player;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  *
- * @author isen
+ * @author clement
  */
 public class Roulette implements Exit {
 
@@ -231,12 +232,20 @@ public class Roulette implements Exit {
     }
 
     public void montantMise(String jeux) {
-
+     int choixmise = 0;
+     
         if (Player.argent != 0) {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Combien voulez vous miser?");
-            int choixmise = sc.nextInt();
+            
+            choixmise = sc.nextInt();
+            /* try {
+                     choixmise = sc.nextInt();
+             } catch (InputMismatchException e) {
+                 System.out.println("Veuillez rentrer un entier");
+                 this.montantMise(jeux);
+             } */
 
             if (choixmise == 0) {
                 System.out.println("Vous ne pouvez pas miser 0");

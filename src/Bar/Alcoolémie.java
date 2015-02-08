@@ -9,7 +9,7 @@ import MenuCasino.Player;
 import java.util.Scanner;
 
 /**
- *  @author isen
+ *  @author clement
  *Cette classe gère l'alcoolémie du joueur
  * 
  *

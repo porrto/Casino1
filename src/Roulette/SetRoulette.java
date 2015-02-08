@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author isen
+ * @author clement
  */
 public class SetRoulette {
 
