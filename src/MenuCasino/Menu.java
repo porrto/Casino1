@@ -25,7 +25,7 @@ public class Menu {
         Player player1 = new Player(argent,0);
         ChoixMenu cm = new ChoixMenu();
         
-        System.out.println("Vous partez avec " + argent);
+        System.out.println("Vous partez avec " + Player.argent);
 
     }
 }

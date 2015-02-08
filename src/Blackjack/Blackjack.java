@@ -26,6 +26,10 @@ import java.util.InputMismatchException;
  */
 
 public class Blackjack implements Exit {
+    
+    public boolean croupiersuperieur21 = false;
+    public boolean joueurexit = false ;
+    public boolean getblackjack = false ;
 
     public  void Jouer() {
 
@@ -45,7 +49,7 @@ public class Blackjack implements Exit {
 
     } // fin main
 
-    public void question()  {
+    public  void question()  {
 
         if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
@@ -69,6 +73,7 @@ public class Blackjack implements Exit {
 
                 jouerBlackjack();
             } else {
+            
                 this.Quitter();
             }
         }
@@ -126,7 +131,7 @@ public class Blackjack implements Exit {
             System.out.println("");
             System.out.println("Le croupier a un Blackjack. Le croupier gagne.");
             Player.argent = Player.argent - mise;
-            
+            getblackjack = true ;
             question();
             
         }
@@ -139,11 +144,12 @@ public class Blackjack implements Exit {
             System.out.println("");
             System.out.println("Vous avez un Blackjack. Vous gagnez.");
             Player.argent = Player.argent + mise * 1.5;
+            getblackjack = true;
             question();
            
         }
 
-        while (true) {
+        while (true && joueurexit == false && getblackjack == false) {
 
             System.out.println("");
             System.out.println("");
@@ -170,6 +176,12 @@ public class Blackjack implements Exit {
             } while (action != 'T' && action != 'P');
 
             if (action == 'P') {
+                
+                 System.out.println("");
+        System.out.println("Le joueur passe");
+        System.out.println("Les cartes du croupier sont");
+        System.out.println("   " + mainCroupier.selectionnerCarte(0));
+        System.out.println("    " + mainCroupier.selectionnerCarte(1));
 
                 break;
             } else {
@@ -186,7 +198,7 @@ public class Blackjack implements Exit {
                     System.out.println("L'autre carte du croupier était "
                             + mainCroupier.selectionnerCarte(1));
                     Player.argent = Player.argent - mise;
-                    
+                        joueurexit = true ;
                     question();
                     
                 }
@@ -194,12 +206,15 @@ public class Blackjack implements Exit {
 
         }
 
-        System.out.println("");
+        /* System.out.println("");
         System.out.println("Le joueur passe");
         System.out.println("Les cartes du croupier sont");
         System.out.println("   " + mainCroupier.selectionnerCarte(0));
-        System.out.println("    " + mainCroupier.selectionnerCarte(1));
-        while (mainCroupier.valeurBlackJack() <= 16) {
+        System.out.println("    " + mainCroupier.selectionnerCarte(1)); */
+        
+        if ( joueurexit == false && getblackjack == false ) {
+        
+        while (mainCroupier.valeurBlackJack() <= 16 && joueurexit==false) {
             Carte newCard = paquet.tirerCarte();
             System.out.println("Le croupier tire " + newCard);
             mainCroupier.ajouterCarte(newCard);
@@ -207,10 +222,11 @@ public class Blackjack implements Exit {
                 System.out.println("");
                 System.out.println("Le dealer a dépassé 21.  Vous avez gagné.");
                   Player.argent = Player.argent + mise;
-                  
+                  croupiersuperieur21 = true;
                     question();
-            }
-        }
+            }}
+        if ( croupiersuperieur21 == false ) {
+        
         System.out.println("Le total du croupier est " + mainCroupier.valeurBlackJack());
 
         System.out.println("");
@@ -219,7 +235,7 @@ public class Blackjack implements Exit {
             Player.argent = Player.argent - mise;
                     
                     question();
-        } else if (mainCroupier.valeurBlackJack() > mainJoueur.valeurBlackJack()) {
+        } else if (mainCroupier.valeurBlackJack() > mainJoueur.valeurBlackJack() && mainCroupier.valeurBlackJack() <= 21 && mainJoueur.valeurBlackJack() <= 21 ) {
             System.out.println("Le croupier gagne " + mainCroupier.valeurBlackJack()
                     + " points à " + mainJoueur.valeurBlackJack() + ".");
             Player.argent = Player.argent - mise;
@@ -232,8 +248,9 @@ public class Blackjack implements Exit {
           Player.argent = Player.argent + mise;
                     
                     question();
+             }
         }
-
+      }
     }
     
     @Override
