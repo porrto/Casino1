@@ -24,13 +24,13 @@ public class Bar implements Exit {
     public boolean pass;
 
     public void initBar() {
-        
-         //PorteMonnaie.argent = argent;    // On met l'argent du joueur dans le porte monnaie du bar
+                
          this.choixJoueur();
-
-         //MenuCasino.Menu.argent = PorteMonnaie.argent;  // On récolte l'argent perdu ou gagner
     }
     
+    /**
+     * 
+     */
     public void choixJoueur() {
 
         SetUpBoisson boisson = new SetUpBoisson();
