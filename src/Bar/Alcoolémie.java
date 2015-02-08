@@ -9,15 +9,34 @@ import MenuCasino.Player;
 import java.util.Scanner;
 
 /**
+ *  @author isen
+ *Cette classe gère l'alcoolémie du joueur
+ * 
  *
- * @author isen
  */
 public abstract class Alcoolémie {
   
+    /**
+     *  Permet de savoir si le jouer a dépassé 0.5
+     */
     static boolean positif = false;
+    /**
+     *  Permet de savoir si le joueur accepte de boire son faire malgrès son alcoolémie
+     */
     static boolean drink = false;
+    /**
+     * Permet de savoir si le joueur est trop soul pour rester dans le casino
+     */
     static boolean soul = false;
 
+/**
+ * A chaque verre contenant de l'alcool on vérifie si le joueur ne dépasse pas la limite autorisé pour conduire
+ * et pour être dans le casino.
+ * 
+ * @param ref 
+ *                  C'est le taux d'alcool de la boisson selectionée
+ * 
+ */                 
     public static void verifTaux(double ref) {
 
         Scanner sc = new Scanner(System.in);
@@ -55,6 +74,7 @@ public abstract class Alcoolémie {
                 Player.tauxalcool = Player.tauxalcool + ref;
                 drink = true;
                 soul = true;
+                System.out.println("Vous riquez de vous faire virer, vous êtes soul");
             }
         }
     }

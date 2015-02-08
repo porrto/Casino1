@@ -13,26 +13,42 @@ import java.util.Scanner;
 import java.util.Random;
 
 /**
- *
  * @author isen
+ * 
+ * Cette classe va permettre au joueur de choisir une boisson : 
+ * <ul>
+ * <li>On va verifier si le joueur dispose assez d'argent</li>
+ * <li>Si le joueur est soul il sera viré</li>
+ * <li>Après être viré il aura une chance sur deux de pouvoir ré-intégrer le casino</li>
+ * </ul>
+ * 
+ *
  */
 public class Bar implements Exit {
 
-    public String choixBar;
-    public int choixBoisson;
-    public int choixverre;
-    public boolean pass;
 
+
+    /**
+     * Désigne le numéro de la boisson entré au clavier
+     */
+    public int choixBoisson;
+
+
+    /**
+     * Permet de démarrer le bar
+     */
     public void initBar() {
                 
          this.choixJoueur();
     }
     
     /**
-     * 
+     *  Menu principale permettant au joueur de choisir une boisson
+     *          Si le joueur est soul, il est viré
      */
     public void choixJoueur() {
 
+        String choixBar;
         SetUpBoisson boisson = new SetUpBoisson();
 
         Scanner sc = new Scanner(System.in);
@@ -42,7 +58,7 @@ public class Bar implements Exit {
             this.fired();
         } else {
 
-            System.out.println("Voulez vous un Cocktail (C), un Soft (S), un Alcool fort (A), sortir du bar (R) ? ");
+            System.out.println("Voulez vous un Cocktail (C), un Soda (S), un Alcool fort (A), sortir du bar (R) ? ");
             choixBar = sc.next();
 
             if (choixBar.equals("C") || choixBar.equals("S") || choixBar.equals("A") || choixBar.equals("R") ) {
@@ -69,6 +85,12 @@ public class Bar implements Exit {
         }
     }
 
+    /**
+     *  Permet de choisir un Cocktail parmis la liste proposé
+     * 
+     * @param cocktails
+     *              Contient la liste des cocktails du SetUpBoisson
+     */
     public void choixCocktails(SetUpBoisson cocktails) {
 
         Scanner sc = new Scanner(System.in);
@@ -100,7 +122,12 @@ public class Bar implements Exit {
         }
 
     }
-
+ /**
+     *  Permet de choisir un Soda parmis la liste proposé
+     * 
+     * @param soda
+     *              Contient la liste des cocktails du SetUpBoisson
+     */
     public void choixSoda(SetUpBoisson soda) {
 
         Scanner sc = new Scanner(System.in);
@@ -129,7 +156,12 @@ public class Bar implements Exit {
             }
         }
     }
-
+ /**
+     *  Permet de choisir un Alcools parmis la liste proposé
+     * 
+     * @param alcool
+     *              Contient la liste des cocktails du SetUpBoisson
+     */
     public void choixAlcools(SetUpBoisson alcool) {
 
         Scanner sc = new Scanner(System.in);
@@ -157,7 +189,15 @@ public class Bar implements Exit {
             }
         }
     }
-
+ /**
+     *  Verifie s'il y a assez d'argent pour acheter la boisson selectionnée précédemment
+     * 
+     * @param prix 
+     *          Le prix de la boisson selectionnée
+     * 
+     * @param taux
+     *          Le taux d'alcoolémie des boisson type Alcool et Cokctail
+     */
     public void verifArgent(int prix, double taux) {
 
         if (Player.argent - prix < 0) {
@@ -177,20 +217,22 @@ public class Bar implements Exit {
         }
 
     }
-
+ /**
+     *  Losque le joueur est soul, on lui laisse une chance sur 2 de re rentrer dans le casino
+     */
     public void fired() {
 
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Vous êtes viré du casino, vous êtes soul");
         System.out.println("Voulez vous rententer votre chance ? (Y) or (N) ");
-        choixBar = sc.next();
+        String retenterchance = sc.next();
 
-        switch (choixBar) {
+        switch (retenterchance) {
             case "Y":
                 System.out.println("Vous allez essayer de passer malgrès le videur ...");
                 Random rand = new Random();
-                pass = rand.nextBoolean();
+                boolean pass = rand.nextBoolean();
 
                 if (pass == true) {
                     System.out.println(" Vous êtes re-rentré dans le casino");
@@ -213,7 +255,9 @@ public class Bar implements Exit {
         }
 
     }
-    
+     /**
+     * Annonce au joueur qu'il quitte le Bar
+     */
     @Override
     public void Quitter() {
         System.out.println("Vous sortez du bar");
