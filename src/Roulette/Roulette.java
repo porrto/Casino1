@@ -18,49 +18,49 @@ public class Roulette implements Exit {
     public String choix;
     public int choixnombre;
 
-// public String choixcouleur="";
-// public String choixparité;
-// public int  choixmise;
+
+    
+     
    public void initRoulette() {
 
-        ChoixJoueur joueur = new ChoixJoueur();
-        SetRoulette tirage = new SetRoulette();
-       // PorteMonnaie.argent = argent;   // On met l'argent dans le porte monnaie de  la roulette
+       ChoixJoueur joueur = new ChoixJoueur();
+       SetRoulette tirage = new SetRoulette();
         System.out.println("Vous disposez de" + Player.argent + "     ");
-        this.choixJoueur(tirage, joueur);
+        
+        this.choixJoueur();
                  
     }
 
-    public void choixJoueur(SetRoulette tirage, ChoixJoueur joueur) {
+    public void choixJoueur( ) {
 
-        System.out.println("Le tirage était de couleur " + tirage.SetUpRoulette().color + "de parité" + tirage.SetUpRoulette().parité + "et le nombre" + tirage.SetUpRoulette().number);
+         System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parité + "et le nombre" + SetRoulette.nombre);
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nombre (N) Parité (P) Couleur (C) ou Tourner la roue (R) ?  ");
+        System.out.println("Nombre (N) Parité (P) Couleur (C) ou Tourner la roue (R) ?  " );
         choix = sc.next();
 
         if ("N".equals(choix) || "P".equals(choix) || "C".equals(choix) || "R".equals(choix)) {
             switch (choix) {
-                case "N":
-                    this.choixNombre(tirage, joueur);
+                case "N":             
+                    this.choixNombre();
                     break;
-                case "P":
-                    this.choixParité(tirage, joueur);
+                      case "P":
+                  this.choixParité();
                     break;
                 case "C":
-                    this.choixCouleur(tirage, joueur);
+                    this.choixCouleur( );
                     break;
                 case "R":
-                    if (joueur.choixNoir == false & joueur.choixRouge == false && joueur.choixImpair == false && joueur.choixPair == false && joueur.number.isEmpty() == true) {
+                    if (ChoixJoueur.choixNoir == false & ChoixJoueur.choixRouge == false && ChoixJoueur.choixImpair == false && ChoixJoueur.choixPair == false && ChoixJoueur.number.isEmpty() == true) {
                         System.out.println("Vous n'avez pas misé");
-                        this.choixJoueur(tirage, joueur);
+                        this.choixJoueur();
                     } else {
 
-                        this.verifNombre(tirage, joueur);   // On vérifie les parie du joueur avec la tirage de base
-                        this.verifParité(tirage, joueur);
-                        this.verifCouleur(tirage, joueur);
+                        this.verifNombre();   // On vérifie les parie du joueur avec la tirage de base
+                        this.verifParité();
+                        this.verifCouleur();
 
-                        System.out.println("Le tirage était de couleur " + tirage.SetUpRoulette().color + "de parité" + tirage.SetUpRoulette().parité + "et le nombre" + tirage.SetUpRoulette().number);
+                        System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parité + "et le nombre" + SetRoulette.nombre);
                         System.out.println("Votre porte monnaie est maintenant de" + Player.argent + "euros");
 
                         if (Player.argent != 0) {            // On propose au joueur de re-joue s'il lui reste de l'argent
@@ -75,7 +75,7 @@ public class Roulette implements Exit {
                                  this.Quitter();
                                 } else {
                                     System.out.println("Veuillez entrer Y ou N ");
-                                    this.choixJoueur(tirage, joueur);
+                                  this.choixJoueur();
                                 }
                             }
                             break;
@@ -84,157 +84,153 @@ public class Roulette implements Exit {
             }
         } else {
             System.out.println("Vous n'avez pas entré N ,P , C ou R");
-            this.choixJoueur(tirage, joueur);
+            this.choixJoueur();
         }
     }
 
-    public void choixNombre(SetRoulette tirage, ChoixJoueur joueur) {
+    public void choixNombre() {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel nombre entre 0 et 36  ou retournez au (100)?  ");
         choixnombre = sc.nextInt();
 
         if (choixnombre == 100) {
-            this.choixJoueur(tirage, joueur);
+       this.choixJoueur();
         } else {
             if (choixnombre >= 0 && choixnombre <= 36) {
 
-                this.montantMise("Number", joueur);
+                this.montantMise("Number");
             } else {
                 System.out.println("Vous n'avez pas rentré un entier entre 0 et 36");
-                this.choixNombre(tirage, joueur);
+                this.choixNombre();
             }
-
- //   else {
-            //       System.out.println("Attention, veuillez rentrer un entier valide");
-            //       this.choixJoueur(tirage, joueur);
         }
-        this.choixJoueur(tirage, joueur);
+     this.choixJoueur();
     }
 
-    public void choixParité(SetRoulette tirage, ChoixJoueur joueur) {
+    public void choixParité() {
         Scanner sc = new Scanner(System.in);
 
-        if (joueur.choixPair != true || joueur.choixImpair != true) {
+        if (ChoixJoueur.choixPair != true || ChoixJoueur.choixImpair != true) {
             System.out.println("Pair (P) , Impair (I) ou Retour (R)?  ");
             String choixparité = sc.next();
 
             switch (choixparité) {
 
                 case "P":
-                    if (joueur.choixPair == true) {
+                    if (ChoixJoueur.choixPair == true) {
                         System.out.println("Vous avez déjà choisis pair");
-                        this.choixParité(tirage, joueur);
+                        this.choixParité();
                     } else {
-                        joueur.choixPair = true;
-                        montantMise("Pair", joueur);
+                        ChoixJoueur.choixPair = true;
+                        montantMise("Pair");
                     }
                     break;
 
                 case "I":
-                    if (joueur.choixImpair == true) {
+                    if (ChoixJoueur.choixImpair == true) {
                         System.out.println("Vous avez déjà choisis impair");
-                        this.choixParité(tirage, joueur);
+                        this.choixParité();
                     } else {
-                        joueur.choixImpair = true;
-                        montantMise("Impair", joueur);
+                        ChoixJoueur.choixImpair = true;
+                        montantMise("Impair");
                     }
                     break;
 
                 case "R":
-                    this.choixJoueur(tirage, joueur);
+                    this.choixJoueur();
                     break;
 
                 default:
                     System.out.println("Vous n'avez pas rentré P , I ou R");
-                    this.choixParité(tirage, joueur);
+                    this.choixParité();
             }
         } else {
             System.out.println("Vous avez déjà choisis pair et impair");
         }
 
-        this.choixJoueur(tirage, joueur);
+        this.choixJoueur();
 
     }
 
-    public void choixCouleur(SetRoulette tirage, ChoixJoueur joueur) {
+    public void choixCouleur() {
         Scanner sc = new Scanner(System.in);
 
-        if (joueur.choixRouge != true || joueur.choixNoir != true) {
+        if (ChoixJoueur.choixRouge != true || ChoixJoueur.choixNoir != true) {
             System.out.println("Rouge (R) , Noir (N) ou Retour (B)?  ");
             String choixcouleur = sc.next();
 
             switch (choixcouleur) {
 
                 case "R":
-                    if (joueur.choixRouge == true) {
+                    if (ChoixJoueur.choixRouge == true) {
                         System.out.println("Vous avez déjà choisis rouge");
-                        this.choixParité(tirage, joueur);
+                        this.choixParité();
                     } else {
-                        joueur.choixRouge = true;
-                        montantMise("Rouge", joueur);
+                        ChoixJoueur.choixRouge = true;
+                        montantMise("Rouge");
                     }
                     break;
 
                 case "N":
-                    if (joueur.choixNoir == true) {
+                    if (ChoixJoueur.choixNoir == true) {
                         System.out.println("Vous avez déjà choisis noir");
-                        this.choixParité(tirage, joueur);
+                        this.choixParité();
                     } else {
-                        joueur.choixNoir = true;
-                        montantMise("Noir", joueur);
+                        ChoixJoueur.choixNoir = true;
+                        montantMise("Noir");
                     }
                     break;
 
                 case "B":
-                    this.choixJoueur(tirage, joueur);
+                    this.choixJoueur();
                     break;
 
                 default:
                     System.out.println("Vous n'avez pas rentré R , N ou B");
-                    this.choixParité(tirage, joueur);
+                    this.choixParité();
             }
         } else {
             System.out.println("Vous avez déjà choisis Rouge et Noir");
         }
 
-        this.choixJoueur(tirage, joueur);
+        this.choixJoueur();
 
     }
 
-    public void verifNombre(SetRoulette tirage, ChoixJoueur joueur) {
+    public void verifNombre() {
 
-        for (ChoixJoueurNumber elem : joueur.number) {
-            if (elem.choix == tirage.nombre) {
+        for (ChoixJoueurNumber elem : ChoixJoueur.number) {
+            if (elem.choix == SetRoulette.nombre) {
                 this.gainArgent(elem.mise * 35);
             }
         }
 
     }
 
-    public void verifParité(SetRoulette tirage, ChoixJoueur joueur) {
+    public void verifParité() {
 
-        if (joueur.choixPair == true && tirage.SetUpRoulette().parité == "pair") {
-            this.gainArgent(joueur.misePair * 2);
+        if (ChoixJoueur.choixPair == true && SetRoulette.parité == "pair") {
+            this.gainArgent(ChoixJoueur.misePair * 2);
         } else {
-            if (joueur.choixImpair == true && tirage.SetUpRoulette().parité == "impair") {
-                this.gainArgent(joueur.miseImpair * 2);
+            if (ChoixJoueur.choixImpair == true &&SetRoulette.parité== "impair") {
+                this.gainArgent(ChoixJoueur.miseImpair * 2);
             }
         }
     }
 
-    public void verifCouleur(SetRoulette tirage, ChoixJoueur joueur) {
+    public void verifCouleur() {
 
-        if (joueur.choixRouge == true && tirage.SetUpRoulette().color == "rouge") {
-            this.gainArgent(joueur.miseRouge * 2);
+        if (ChoixJoueur.choixRouge == true && SetRoulette.color == "rouge") {
+            this.gainArgent(ChoixJoueur.miseRouge * 2);
         } else {
-            if (joueur.choixNoir == true && tirage.SetUpRoulette().color == "noir") {
-                this.gainArgent(joueur.miseNoir * 2);
+            if (ChoixJoueur.choixNoir == true && SetRoulette.color == "noir") {
+                this.gainArgent(ChoixJoueur.miseNoir * 2);
             }
         }
     }
 
-    public void montantMise(String jeux, ChoixJoueur joueur) {
+    public void montantMise(String jeux) {
 
         if (Player.argent != 0) {
 
@@ -244,29 +240,26 @@ public class Roulette implements Exit {
 
             if (choixmise == 0) {
                 System.out.println("Vous ne pouvez pas miser 0");
-                this.montantMise(jeux, joueur);
+                this.montantMise(jeux);
             } else {
                 if (choixmise != 0) {
-                    this.verifMise(jeux, choixmise, joueur);
+                    this.verifMise(jeux, choixmise);
                 }
             }
 
-            /*   else {
-             System.out.println("Attention, veuillez rentrer un entier valide");
-             this.montantMise(mise);
-             }    */
+        
         } else {
             System.out.println("Vous n'avez plus d'argent");
-            //  this.choixJoueur();
+        
         }
 
     }
 
-    public void verifMise(String jeux, int montant, ChoixJoueur joueur) {
+    public void verifMise(String jeux, int montant) {
 
         if (Player.argent - montant < 0) {
             System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
-            this.montantMise(jeux, joueur);
+            this.montantMise(jeux);
         } else {
             this.miseArgent(montant);
             System.out.println("Il vous reste  " + Player.argent);
@@ -275,35 +268,35 @@ public class Roulette implements Exit {
 
                 case "Number":
                     ChoixJoueurNumber objet = new ChoixJoueurNumber(choixnombre, montant);
-                    joueur.number.add(objet);
+                    ChoixJoueur.number.add(objet);
                     break;
 
                 case "Rouge":
-                    joueur.miseRouge = montant;
+                    ChoixJoueur.miseRouge = montant;
                     break;
 
                 case "Noir":
-                    joueur.miseNoir = montant;
+                    ChoixJoueur.miseNoir = montant;
                     break;
 
                 case "Pair":
-                    joueur.misePair = montant;
+                    ChoixJoueur.misePair = montant;
                     break;
 
                 case "Impair":
-                    joueur.miseImpair = montant;
+                    ChoixJoueur.miseImpair = montant;
                     break;
 
             }
         }
     }
     
-      public static void gainArgent(int gain) {
+      public void gainArgent(int gain) {
 
         Player.argent = Player.argent + gain;
     }
 
-    public static void miseArgent(int mise) {
+    public void miseArgent(int mise) {
 
         Player.argent = Player.argent - mise;
 

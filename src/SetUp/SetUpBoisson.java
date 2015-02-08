@@ -12,9 +12,18 @@ import Bar.Boisson;
 /**
  *
  * @author isen
+ * 
+ * Permet de construire les différentes listes de boissons qui seront présentes dans la carte
  */
 public class SetUpBoisson {
 
+    /**
+     * On crée les Alcools voulu dans notre carte
+     * 
+     * @return 
+     *          On retourne une liste d'alcool de type Boisson
+     * @see Bar.Boisson
+     */
     public List<Boisson> setUpAlcool() {
 
         Boisson vodka = new Boisson("vodka", 6, 1);
@@ -30,7 +39,13 @@ public class SetUpBoisson {
         return listAlcool;
 
     }
-
+   /**
+     * On crée les Sodas voulu dans notre carte
+     * 
+     * @return 
+     *          On retourne une liste de sodas de type Boisson
+     * @see Bar.Boisson
+     */
     public List<Boisson> setUpSoda() {
 
         Boisson cocacola = new Boisson("Coca-Cola", 5, 1);
@@ -45,7 +60,13 @@ public class SetUpBoisson {
 
         return listSoda;
     }
-
+   /**
+     * On crée les Cocktails voulu dans notre carte
+     * 
+     * @return 
+     *          On retourne une liste de cokctails de type Boisson
+     * @see Bar.Boisson
+     */
     public List<Boisson> setUpCocktails() {
 
         Boisson mojito = new Boisson("Mojito", 7, 1);

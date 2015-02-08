@@ -8,9 +8,14 @@ package Interface;
 /**
  *
  * @author isen
+ * 
+ * Contient la méthode permettant de quitter les différent jeux
  */
 public interface Exit {
     
+    /**
+     * On appelera cette méthode à chaque fois qu'on voudra partir d'un jeu ou du bar pour revenir au menu principale
+     */
     public void Quitter();
 
 }
