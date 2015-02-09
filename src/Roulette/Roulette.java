@@ -12,19 +12,38 @@ import java.util.Scanner;
 
 /**
  *
+ * 
+ * 
+ * Permet de proposer au joueur les différentes mises :
+ * <ul>
+ * <li>Numéro</li>
+ * <li>Couleur</li>
+ * <li>Parité</li>
+ * </ul>
+ * 
+ * Chaque choix sera vérifié avec l'argent du joueur et enregistré dans la classe ChoixJoueur
+ * @see ChoixJoueur
  * @author clement
+ * 
  */
 public class Roulette implements Exit {
 
-    public String choix;
+ //   public String choix;
+    
+    /**
+     *  Correspond au nombre que le joueur a choisis lorsqu'il décide de miser
+     */
     public int choixnombre;
+    /**
+     *  Correspond à la mise réalisé par le joueur lors d'un choix
+     */
     public int choixmise;
-    
-    
-
-
-    
-     
+      
+     /**
+      * On instancie un joueur et un nouveau tirage
+      * Puis on démarre la roulette pour que le choueur choisisse ce qu'il veut faire
+      * 
+      */
    public void initRoulette() {
 
        ChoixJoueur joueur = new ChoixJoueur();
@@ -35,8 +54,12 @@ public class Roulette implements Exit {
                  
     }
 
+   /**
+    * Menu général indiquant au joueur les différents types de mises qu'il peut réaliser
+    */
     public void choixJoueur( ) {
-
+        
+        String choix;
          System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parité + "et le nombre" + SetRoulette.nombre);
 
         Scanner sc = new Scanner(System.in);
@@ -92,6 +115,9 @@ public class Roulette implements Exit {
         }
     }
 
+    /**
+     * Demande au joueur un nombre
+     */
     public void choixNombre() {
 
         Scanner sc = new Scanner(System.in);
@@ -112,6 +138,9 @@ public class Roulette implements Exit {
      this.choixJoueur();
     }
 
+    /**
+     * Demande au joueur de choisir une parité
+     */
     public void choixParité() {
         Scanner sc = new Scanner(System.in);
 
@@ -157,6 +186,9 @@ public class Roulette implements Exit {
 
     }
 
+    /**
+     * Demande au joueur de choisir une couleur
+     */
     public void choixCouleur() {
         Scanner sc = new Scanner(System.in);
 
@@ -202,6 +234,9 @@ public class Roulette implements Exit {
 
     }
 
+    /**
+     * Permet de véirier si le nombre choisis a déjà été choisis par le joueur
+     */
     public void verifNombre() {
 
         for (ChoixJoueurNumber elem : ChoixJoueur.number) {
@@ -212,6 +247,9 @@ public class Roulette implements Exit {
 
     }
 
+    /**
+     * Permet de véirifer si la parité choisis à déjà été choisis  par le joueur
+     */
     public void verifParité() {
 
         if (ChoixJoueur.choixPair == true && SetRoulette.parité == "pair") {
@@ -223,6 +261,9 @@ public class Roulette implements Exit {
         }
     }
 
+    /**
+     * Permer de vérifier si la couleur choisis à déjà été choisis par le joueur
+     */
     public void verifCouleur() {
 
         if (ChoixJoueur.choixRouge == true && SetRoulette.color == "rouge") {
@@ -234,6 +275,12 @@ public class Roulette implements Exit {
         }
     }
 
+    /**
+     * Demande au joueur la montant de la mise souhaité et vérifie si celui si possède assez d'argent 
+     * @param jeux 
+     *                  Représente sur quoi le joueur mise ( Nombre, Parité, Couleur)
+     * @see Player
+     */                  
     public void montantMise(String jeux) {
       
         if (Player.argent != 0) {
@@ -262,6 +309,9 @@ public class Roulette implements Exit {
                 }
     }
     
+    /**
+     * Permet de vérifié si une entrée au clavier et bien un entier
+     */
     public void verifInteger() {
         
          
@@ -280,14 +330,15 @@ public class Roulette implements Exit {
                
     }
 
-    public void verifMise(String jeux, int montant) {
-
-        /*if (Player.argent - montant < 0) {
-            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
-            this.montantMise(jeux);
-        } else {
-            this.miseArgent(montant);
-            System.out.println("Il vous reste  " + Player.argent); */
+    /**
+     * Associe la mise du joueur sur une catégorie ( Nombre, Parité, Couleur) dans les choix du joueur
+     * @param jeux
+     *                  Représente sur quoi le joueur mise ( Nombre, Parité, Couleur)
+     * @param montant 
+     *                  Représente la mise choisis par le joueur
+     * @see ChoixJoueur
+     */
+    public void SaveMise(String jeux, int montant) {
 
             switch (jeux) {
 
@@ -315,18 +366,30 @@ public class Roulette implements Exit {
             }
         }
     
-    
-      public void gainArgent(int gain) {
+    /**
+     * Donne l'argent gagné au joueur
+     * @param gain  
+     *                      Argent gagner sur un type de mise
+     */
+    public void gainArgent(int gain) {
 
         Player.argent = Player.argent + gain;
     }
 
+    /**
+     * Enlève l'argent misé au joueur
+     * @param mise 
+     *                  Somme misé par le joueur
+     */
     public void miseArgent(int mise) {
 
         Player.argent = Player.argent - mise;
 
     }
     
+    /**
+     * Method implémenté de l'interface permettant d'afficher un message d'aurevoir personnalisé avec le nom du jeux 
+     */
     @Override
    public void Quitter() {
           System.out.println("Vous quittez la Roulette");

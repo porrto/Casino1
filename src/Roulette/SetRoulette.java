@@ -9,14 +9,29 @@ import java.util.Random;
 
 /**
  *
- * @author clement
+ *
+ * 
+ * Permet d'obtenir un numéro sur la roulette, avec sa parité et sa couleur
+ *  @author clement
  */
 public class SetRoulette {
 
+    /**
+     *  Numéro obtenu
+     */
     public static int nombre;
+    /**
+     *  Couleur correspondant au numéro
+     */
     public static String color;
+    /**
+     * Parité du numéro
+     */
     public static String parité;
 
+    /**
+     * Réalise le tirage d'un numéro et détermine sa couleur et sa parité
+     */
     public SetRoulette() {
         Random rand = new Random();
         nombre = rand.nextInt(37);
@@ -37,29 +52,4 @@ public class SetRoulette {
             parité = "impair";
         }
     }
-
-    /*public Tirage SetUpRoulette() {
-
-        Tirage tirage = new Tirage(nombre, getCouleur(nombre), getParité(nombre));
-        
-     
-
-        return tirage;
-
-    }
-
-    public String getCouleur(int nombre) {
-       
-
-     
-    }
-
-    public String getParité(int nombre) {
-        ;
-
-     
-
-        return parité;
-    }
-*/
 }

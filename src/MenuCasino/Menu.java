@@ -9,13 +9,21 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 /**
- *
+ *On va demander au joueur de rentrer une somme d'argent afin de pouvoir commencer les activités du casino
  * @author clement
  */
 public class Menu {
-
+    
+/**
+ * Argent que le joueur dispose dès son entrée dans le casino
+ */
 public static double argent;
 
+/**
+ * Instanciation du joueur et du menu de jeu
+ * @param args 
+ * 
+ */
     public static void main(String[] args) {
 
         verifInteger();
@@ -27,6 +35,9 @@ public static double argent;
 
     }
     
+    /**
+     * Verification de la somme d'argent rentrée par le joueur
+     */
      public static void verifInteger() {
         
          

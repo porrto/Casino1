@@ -11,9 +11,10 @@ import Bar.Boisson;
 
 /**
  *
- * @author clement
+ * 
  * 
  * Permet de construire les différentes listes de boissons qui seront présentes dans la carte
+ * @author clement
  */
 public class SetUpBoisson {
 

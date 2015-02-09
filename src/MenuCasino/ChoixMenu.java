@@ -9,22 +9,35 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
+ *Menu des différents jeux du casino
  * @author clement
  */
 public class ChoixMenu {
     
-    
+    /**
+     * Indique si le joueur a choisis de quitter
+     */
     public  static boolean quitter = false;
+    /**
+     * Indique si le joueur doit être viré (lorsqu'il a trop bu)
+     */
     public static boolean fired = false;
+    /**
+     * Choix de jeux du joueur
+     */
     public  int jeux;
     
-    
+    /**
+     * Constructeur permettant de lancer le menu
+     */
     public ChoixMenu(){
        
         this.Start();
     }
     
+    /**
+     * Proposition des jeux et du bar
+     */
     public void Start() {
         
         String choix;
@@ -75,6 +88,9 @@ public class ChoixMenu {
 
     }
     
+    /**
+     * On véirifie que le choix du joueur existe dans la liste proposée 
+     */
     public void ChoixJeu() {
         
           Scanner sc = new Scanner(System.in);

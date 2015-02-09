@@ -9,10 +9,10 @@ import MenuCasino.Player;
 import java.util.Scanner;
 
 /**
- *  @author clement
+ * 
  *Cette classe gère l'alcoolémie du joueur
  * 
- *
+ * @author clement
  */
 public abstract class Alcoolémie {
   

@@ -13,7 +13,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 /**
- * @author clement
+ * 
  * 
  * Cette classe va permettre au joueur de choisir une boisson : 
  * <ul>
@@ -22,7 +22,7 @@ import java.util.Random;
  * <li>Après être viré il aura une chance sur deux de pouvoir ré-intégrer le casino</li>
  * </ul>
  * 
- *
+ *@author clement
  */
 public class Bar implements Exit {
 

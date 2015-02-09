@@ -6,9 +6,9 @@
 package Bar;
 
 /**
- *  @author clement
+ *  
  *On asigne à chaque boissons créées leurs paramètres
- * 
+ * @author clement
  *
  */
 public class Boisson {

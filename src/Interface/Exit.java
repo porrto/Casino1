@@ -7,9 +7,10 @@ package Interface;
 
 /**
  *
- * @author isen
+ * 
  * 
  * Contient la méthode permettant de quitter les différent jeux
+ * @author isen
  */
 public interface Exit {
     
