@@ -33,15 +33,7 @@ public class ChoixMenu {
 
         while (quitter == false) {
 
-            System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
-          
-                try {
-                     jeux = sc.nextInt();
-             } catch (InputMismatchException e) {
-                 System.out.println("Veuillez rentrer 1, 2, 3 ou 4");
-              
-             }
-                sc.nextLine();
+           ChoixJeu();
             switch (jeux) {
                 case 1:
                     Blackjack.Blackjack bj = new Blackjack.Blackjack();
@@ -80,5 +72,23 @@ public class ChoixMenu {
             }
         }
 
+    }
+    
+    public void ChoixJeu() {
+        
+          Scanner sc = new Scanner(System.in);
+        System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
+          
+                try {
+                     jeux = sc.nextInt();
+             } catch (InputMismatchException e) {
+                 System.out.println("Veuillez rentrer 1, 2, 3 ou 4");
+                 ChoixJeu();
+             }
+                if(jeux!=1 && jeux!= 2 && jeux!= 3 && jeux!= 4){
+                    
+                    ChoixJeu();
+                }
+                sc.nextLine();
     }
 }
