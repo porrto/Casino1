@@ -34,6 +34,7 @@ public class ChoixMenu {
         while (quitter == false) {
 
            ChoixJeu();
+           
             switch (jeux) {
                 case 1:
                     Blackjack.Blackjack bj = new Blackjack.Blackjack();
@@ -89,6 +90,6 @@ public class ChoixMenu {
                     
                     ChoixJeu();
                 }
-                sc.nextLine();
+                  sc.nextLine();
     }
 }

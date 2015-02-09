@@ -18,6 +18,9 @@ public class Roulette implements Exit {
 
     public String choix;
     public int choixnombre;
+    public int choixmise;
+    
+    
 
 
     
@@ -166,7 +169,7 @@ public class Roulette implements Exit {
                 case "R":
                     if (ChoixJoueur.choixRouge == true) {
                         System.out.println("Vous avez déjà choisis rouge");
-                        this.choixParité();
+                        this.choixCouleur();
                     } else {
                         ChoixJoueur.choixRouge = true;
                         montantMise("Rouge");
@@ -176,7 +179,7 @@ public class Roulette implements Exit {
                 case "N":
                     if (ChoixJoueur.choixNoir == true) {
                         System.out.println("Vous avez déjà choisis noir");
-                        this.choixParité();
+                        this.choixCouleur();
                     } else {
                         ChoixJoueur.choixNoir = true;
                         montantMise("Noir");
@@ -189,7 +192,7 @@ public class Roulette implements Exit {
 
                 default:
                     System.out.println("Vous n'avez pas rentré R , N ou B");
-                    this.choixParité();
+                    this.choixCouleur();
             }
         } else {
             System.out.println("Vous avez déjà choisis Rouge et Noir");
@@ -232,46 +235,59 @@ public class Roulette implements Exit {
     }
 
     public void montantMise(String jeux) {
-     int choixmise = 0;
-     
+      
         if (Player.argent != 0) {
 
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Combien voulez vous miser?");
-            
-            choixmise = sc.nextInt();
-            /* try {
-                     choixmise = sc.nextInt();
-             } catch (InputMismatchException e) {
-                 System.out.println("Veuillez rentrer un entier");
-                 this.montantMise(jeux);
-             } */
+            verifInteger();
 
             if (choixmise == 0) {
                 System.out.println("Vous ne pouvez pas miser 0");
                 this.montantMise(jeux);
+                
             } else {
-                if (choixmise != 0) {
-                    this.verifMise(jeux, choixmise);
-                }
-            }
-
-        
+                
+            if (Player.argent - choixmise < 0) {
+            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
+            this.montantMise(jeux);
+            
         } else {
-            System.out.println("Vous n'avez plus d'argent");
+            this.miseArgent(choixmise);
+            System.out.println("Il vous reste  " + Player.argent);
+               }
+            }
+        } 
         
-        }
-
+            else {
+            System.out.println("Vous n'avez plus d'argent");
+                }
+    }
+    
+    public void verifInteger() {
+        
+         
+           Scanner sc = new Scanner(System.in);
+            System.out.println("Combien voulez vous miser?");
+            
+          //  choixmise = sc.nextInt();
+              try {
+                     choixmise = sc.nextInt();
+             } catch (InputMismatchException e) {
+                 System.out.println("Veuillez rentrer un entier");
+                verifInteger();
+             }
+              
+               sc.nextLine();
+               
     }
 
     public void verifMise(String jeux, int montant) {
 
-        if (Player.argent - montant < 0) {
+        /*if (Player.argent - montant < 0) {
             System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
             this.montantMise(jeux);
         } else {
             this.miseArgent(montant);
-            System.out.println("Il vous reste  " + Player.argent);
+            System.out.println("Il vous reste  " + Player.argent); */
 
             switch (jeux) {
 
@@ -298,7 +314,7 @@ public class Roulette implements Exit {
 
             }
         }
-    }
+    
     
       public void gainArgent(int gain) {
 

@@ -14,18 +14,38 @@ import java.util.InputMismatchException;
  */
 public class Menu {
 
-
+public static double argent;
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Combien d'argent avez vous ?");
-        double argent = sc.nextInt();
+        verifInteger();
         
         Player player1 = new Player(argent,0);
         ChoixMenu cm = new ChoixMenu();
         
         System.out.println("Vous partez avec " + Player.argent);
 
+    }
+    
+     public static void verifInteger() {
+        
+         
+            Scanner sc = new Scanner(System.in);
+        System.out.println("Combien d'argent avez vous ?");
+        
+              try {
+                    argent = sc.nextInt();
+             } catch (InputMismatchException e) {
+                 System.out.println("Veuillez rentrer un entier");
+                verifInteger();
+             }
+              
+                  if(argent <= 0) {
+                      System.out.println("Vous ne pouvez pas avoir ce solde d'argent");
+                      verifInteger();
+                  }
+              
+               sc.nextLine();
+               
     }
 }
