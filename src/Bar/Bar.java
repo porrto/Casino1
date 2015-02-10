@@ -46,7 +46,7 @@ public class Bar implements Exit {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Vous avez" + Player.argent + " $ ");
+        System.out.println("Vous avez " + Player.argent + " $ ");
         if (Alcoolemie.saoul == true) {
             this.fired();
         } else {
