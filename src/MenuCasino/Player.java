@@ -9,7 +9,7 @@ package MenuCasino;
  *Chaque joueur dispose d'argent et un taux d'alcoolémie qui dépend du nombre de verre d'alcool qu'il prend au bar
  * @author clement
  */
-public class Player {
+public  class Player {
     /**
      * Argent du joueur
      */

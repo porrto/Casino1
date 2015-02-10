@@ -298,7 +298,8 @@ public class Roulette implements Exit {
             this.montantMise(jeux);
             
         } else {
-            this.miseArgent(choixmise);
+            this.SaveMise(jeux, choixmise);
+          
             System.out.println("Il vous reste  " + Player.argent);
                }
             }
@@ -364,6 +365,7 @@ public class Roulette implements Exit {
                     break;
 
             }
+              this.miseArgent(choixmise);
         }
     
     /**
