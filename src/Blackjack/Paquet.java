@@ -3,19 +3,19 @@ package Blackjack;
 public class Paquet {
 
     private final Carte[] paquet;
-    private int cartesTirées;
+    private int cartesTirees;
 
     public Paquet() {
 
         paquet = new Carte[52];
-        int cartesCréées = 0;
+        int cartesCreees = 0;
         for (int suit = 0; suit <= 3; suit++) {
             for (int value = 1; value <= 13; value++) {
-                paquet[cartesCréées] = new Carte(value, suit);
-                cartesCréées++;
+                paquet[cartesCreees] = new Carte(value, suit);
+                cartesCreees++;
             }
         }
-        cartesTirées = 0;
+        cartesTirees = 0;
     }
 
     public void mélanger() {
@@ -26,21 +26,21 @@ public class Paquet {
             paquet[i] = paquet[rand];
             paquet[rand] = temp;
         }
-        cartesTirées = 0;
+        cartesTirees = 0;
     }
 
     public int cartesRestantes() {
 
-        return 52 - cartesTirées;
+        return 52 - cartesTirees;
     }
 
     public Carte tirerCarte() {
 
-        if (cartesTirées == 52) {
+        if (cartesTirees == 52) {
             mélanger();
         }
-        cartesTirées++;
-        return paquet[cartesTirées - 1];
+        cartesTirees++;
+        return paquet[cartesTirees - 1];
     }
 
 } // end class Deck

@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 
  * @author clement
  */
-public abstract class Alcoolémie {
+public abstract class Alcoolemie {
   
     /**
      *  Permet de savoir si le jouer a dépassé 0.5

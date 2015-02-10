@@ -27,7 +27,7 @@ public class SetRoulette {
     /**
      * Parité du numéro
      */
-    public static String parité;
+    public static String parite;
 
     /**
      * Réalise le tirage d'un numéro et détermine sa couleur et sa parité
@@ -47,9 +47,9 @@ public class SetRoulette {
         }
         
            if (nombre % 2 == 0) {
-            parité = "pair";
+            parite = "pair";
         } else {
-            parité = "impair";
+            parite = "impair";
         }
     }
 }

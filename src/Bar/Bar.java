@@ -54,7 +54,7 @@ public class Bar implements Exit {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Vous avez" + Player.argent);
-        if (Alcoolémie.soul == true) {
+        if (Alcoolemie.soul == true) {
             this.fired();
         } else {
 
@@ -205,8 +205,8 @@ public class Bar implements Exit {
             this.choixJoueur();
         } else {
 
-            Alcoolémie.verifTaux(taux);
-            if (Alcoolémie.drink == true) {
+            Alcoolemie.verifTaux(taux);
+            if (Alcoolemie.drink == true) {
                 Player.argent = Player.argent - prix;
                 System.out.println("Il vous reste  " + Player.argent);
                 this.choixJoueur();

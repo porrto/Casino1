@@ -51,7 +51,7 @@ public class ChoixMenu {
             switch (jeux) {
                 case 1:
                     Blackjack.Blackjack bj = new Blackjack.Blackjack();
-                    bj.Jouer();
+                    bj.AccueilBlackJack();
 
                     break;
 

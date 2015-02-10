@@ -60,7 +60,7 @@ public class Roulette implements Exit {
     public void choixJoueur( ) {
         
         String choix;
-         System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parité + "et le nombre" + SetRoulette.nombre);
+         System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parite + "et le nombre" + SetRoulette.nombre);
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Nombre (N) Parité (P) Couleur (C) ou Tourner la roue (R) ?  " );
@@ -87,7 +87,7 @@ public class Roulette implements Exit {
                         this.verifParité();
                         this.verifCouleur();
 
-                        System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parité + "et le nombre" + SetRoulette.nombre);
+                        System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parite + "et le nombre" + SetRoulette.nombre);
                         System.out.println("Votre porte monnaie est maintenant de" + Player.argent + "euros");
 
                         if (Player.argent != 0) {            // On propose au joueur de re-joue s'il lui reste de l'argent
@@ -252,10 +252,10 @@ public class Roulette implements Exit {
      */
     public void verifParité() {
 
-        if (ChoixJoueur.choixPair == true && SetRoulette.parité == "pair") {
+        if (ChoixJoueur.choixPair == true && SetRoulette.parite == "pair") {
             this.gainArgent(ChoixJoueur.misePair * 2);
         } else {
-            if (ChoixJoueur.choixImpair == true &&SetRoulette.parité== "impair") {
+            if (ChoixJoueur.choixImpair == true &&SetRoulette.parite== "impair") {
                 this.gainArgent(ChoixJoueur.miseImpair * 2);
             }
         }
