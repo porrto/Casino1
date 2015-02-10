@@ -12,7 +12,7 @@ import java.util.Scanner;
  *Menu des différents jeux du casino
  * @author clement
  */
-public class ChoixMenu {
+public final class ChoixMenu {
     
     /**
      * Indique si le joueur a choisis de quitter
@@ -25,7 +25,7 @@ public class ChoixMenu {
     /**
      * Choix de jeux du joueur
      */
-    public  int jeux;
+    public  int decision;
     
     /**
      * Constructeur permettant de lancer le menu
@@ -48,7 +48,7 @@ public class ChoixMenu {
 
            ChoixJeu();
            
-            switch (jeux) {
+            switch (decision) {
                 case 1:
                     Blackjack.Blackjack bj = new Blackjack.Blackjack();
                     bj.AccueilBlackJack();
@@ -72,9 +72,14 @@ public class ChoixMenu {
                    bar.initBar();
 
                     break;
+                
+                case 5:
+                    quitter = true;
+
+                    break;
             }
 
-            if (fired == false) {
+       /*/     if (fired == false) {
                 System.out.println("Voulez vous quitter le casino (Y) or (N) ?");
                 choix = sc.next();
                 if (choix.equals("N")) {
@@ -83,7 +88,7 @@ public class ChoixMenu {
                     quitter = true;
                 }
 
-            }
+            } /*/
         }
 
     }
@@ -94,16 +99,16 @@ public class ChoixMenu {
     public void ChoixJeu() {
         
           Scanner sc = new Scanner(System.in);
-        System.out.println("A quoi voulez vous jouer ? BlackJack (1) MachineASous (2) Roulette (3) Bar (4) ");
+        System.out.println("Que voulez vous faire ? BlackJack (1)  MachineASous (2) Roulette (3) Bar (4) Sortir du casino (5) ");
           
                 try {
-                     jeux = sc.nextInt();
+                     decision = sc.nextInt();
              } catch (InputMismatchException e) {
-                 System.out.println("Veuillez rentrer 1, 2, 3 ou 4");
+                 System.out.println("Veuillez rentrer 1, 2, 3, 4 ou 5 ");
                  ChoixJeu();
              }
-                if(jeux!=1 && jeux!= 2 && jeux!= 3 && jeux!= 4){
-                    
+                if(decision!=1 && decision!= 2 && decision!= 3 && decision!= 4 && decision!=5){
+                    System.out.println("Veuillez rentrer 1, 2, 3, 4 ou 5 ");
                     ChoixJeu();
                 }
                   sc.nextLine();
