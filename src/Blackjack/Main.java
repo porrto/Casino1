@@ -53,8 +53,8 @@ public class Main {
 
         ArrayList nouvelleMain = new ArrayList();
         while (main.size() > 0) {
-            int pos = 0;  // Position of minimal card.
-            Carte c = (Carte) main.get(0);  // Minumal card.
+            int pos = 0;
+            Carte c = (Carte) main.get(0);
             for (int i = 1; i < main.size(); i++) {
                 Carte c1 = (Carte) main.get(i);
                 if (c1.getSuite() < c.getSuite()
@@ -73,8 +73,8 @@ public class Main {
 
         ArrayList nouvelleMain = new ArrayList();
         while (main.size() > 0) {
-            int pos = 0;  // Position of minimal card.
-            Carte c = (Carte) main.get(0);  // Minumal card.
+            int pos = 0;
+            Carte c = (Carte) main.get(0);
             for (int i = 1; i < main.size(); i++) {
                 Carte c1 = (Carte) main.get(i);
                 if (c1.getValeur() < c.getValeur()

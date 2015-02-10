@@ -43,4 +43,4 @@ public class Paquet {
         return paquet[cartesTirees - 1];
     }
 
-} // end class Deck
+}

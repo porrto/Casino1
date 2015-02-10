@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Roulette;
 
 import Interface.Exit;
+import Interface.Mise;
 import MenuCasino.Player;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,29 +23,29 @@ import java.util.Scanner;
  * @author clement
  * 
  */
-public class Roulette implements Exit {
+public class Roulette implements Exit,Mise {
 
  //   public String choix;
     
     /**
-     *  Correspond au nombre que le joueur a choisis lorsqu'il décide de miser
+     *  Correspond au nombre que le joueur a choisi lorsqu'il décide de miser
      */
     public int choixnombre;
     /**
-     *  Correspond à la mise réalisé par le joueur lors d'un choix
+     *  Correspond à la mise réalisée par le joueur lors d'un choix
      */
     public int choixmise;
       
      /**
       * On instancie un joueur et un nouveau tirage
-      * Puis on démarre la roulette pour que le choueur choisisse ce qu'il veut faire
+      * Puis on démarre la roulette pour que le joueur choisisse ce qu'il veut faire
       * 
       */
    public void initRoulette() {
 
        ChoixJoueur joueur = new ChoixJoueur();
        SetRoulette tirage = new SetRoulette();
-        System.out.println("Vous disposez de" + Player.argent + "     ");
+        System.out.println("Vous disposez de " + Player.argent + "  $   ");
         
         this.choixJoueur();
                  
@@ -60,10 +57,10 @@ public class Roulette implements Exit {
     public void choixJoueur( ) {
         
         String choix;
-         System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parite + "et le nombre" + SetRoulette.nombre);
+         
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nombre (N) Parité (P) Couleur (C) ou Tourner la roue (R) ?  " );
+        System.out.println("Miser sur le nombre (N), la parité (P), la couleur (C) ou tourner la roue (R) ?  " );
         choix = sc.next();
 
         if ("N".equals(choix) || "P".equals(choix) || "C".equals(choix) || "R".equals(choix)) {
@@ -72,7 +69,7 @@ public class Roulette implements Exit {
                     this.choixNombre();
                     break;
                       case "P":
-                  this.choixParité();
+                  this.choixParite();
                     break;
                 case "C":
                     this.choixCouleur( );
@@ -83,25 +80,25 @@ public class Roulette implements Exit {
                         this.choixJoueur();
                     } else {
 
-                        this.verifNombre();   // On vérifie les parie du joueur avec la tirage de base
+                        this.verifNombre();   // On vérifie les paris du joueur avec le tirage de base
                         this.verifParité();
                         this.verifCouleur();
 
-                        System.out.println("Le tirage était de couleur " + SetRoulette.color + "de parité" + SetRoulette.parite + "et le nombre" + SetRoulette.nombre);
-                        System.out.println("Votre porte monnaie est maintenant de" + Player.argent + "euros");
+                        System.out.println("Le tirage était de couleur " + SetRoulette.color + " de parité " + SetRoulette.parite + " et le nombre " + SetRoulette.nombre);
+                        System.out.println("Votre porte monnaie est maintenant de " + Player.argent + " $");
 
-                        if (Player.argent != 0) {            // On propose au joueur de re-joue s'il lui reste de l'argent
-                            System.out.println("Voulez vous rejouez ? (Y) or (N) ");
+                        if (Player.argent != 0) {            // On propose au joueur de rejouer s'il lui reste de l'argent
+                            System.out.println("Voulez vous rejouer ? Oui (O) ou Non (N) ");
                             String choixnouvellepartie = sc.next();
 
-                            if (choixnouvellepartie.equals("Y")) {
-                                System.out.println("Vous disposez maintenant de " + Player.argent + "euros");
+                            if (choixnouvellepartie.equals("O")) {
+                                System.out.println("Vous disposez maintenant de " + Player.argent + " $");
                                 this.initRoulette();
                             } else {
                                 if (choixnouvellepartie.equals("N")) {
                                  this.Quitter();
                                 } else {
-                                    System.out.println("Veuillez entrer Y ou N ");
+                                    System.out.println("Veuillez entrer O ou N ");
                                   this.choixJoueur();
                                 }
                             }
@@ -110,7 +107,7 @@ public class Roulette implements Exit {
                     }
             }
         } else {
-            System.out.println("Vous n'avez pas entré N ,P , C ou R");
+            System.out.println("Vous n'avez pas entré N,P,C ou R");
             this.choixJoueur();
         }
     }
@@ -121,7 +118,7 @@ public class Roulette implements Exit {
     public void choixNombre() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Quel nombre entre 0 et 36  ou retournez au (100)?  ");
+        System.out.println("Choisir un nombre entre 0 et 36  ou retourner au menu (100)  ");
         choixnombre = sc.nextInt();
 
         if (choixnombre == 100) {
@@ -130,43 +127,48 @@ public class Roulette implements Exit {
             if (choixnombre >= 0 && choixnombre <= 36) {
 
                 this.montantMise("Number");
+                 this.choixJoueur();
             } else {
                 System.out.println("Vous n'avez pas rentré un entier entre 0 et 36");
                 this.choixNombre();
             }
         }
-     this.choixJoueur();
+    
     }
 
     /**
      * Demande au joueur de choisir une parité
      */
-    public void choixParité() {
+    public void choixParite() {
         Scanner sc = new Scanner(System.in);
 
         if (ChoixJoueur.choixPair != true || ChoixJoueur.choixImpair != true) {
-            System.out.println("Pair (P) , Impair (I) ou Retour (R)?  ");
+            System.out.println("Pair (P) , Impair (I) ou Retour (R) ?  ");
             String choixparité = sc.next();
 
             switch (choixparité) {
 
                 case "P":
                     if (ChoixJoueur.choixPair == true) {
-                        System.out.println("Vous avez déjà choisis pair");
-                        this.choixParité();
+                        System.out.println("Vous avez déjà choisi pair");
+                        this.choixParite();
                     } else {
                         ChoixJoueur.choixPair = true;
                         montantMise("Pair");
+                                this.choixJoueur();
+
                     }
                     break;
 
                 case "I":
                     if (ChoixJoueur.choixImpair == true) {
-                        System.out.println("Vous avez déjà choisis impair");
-                        this.choixParité();
+                        System.out.println("Vous avez déjà choisi impair");
+                        this.choixParite();
                     } else {
                         ChoixJoueur.choixImpair = true;
                         montantMise("Impair");
+                                this.choixJoueur();
+
                     }
                     break;
 
@@ -175,14 +177,13 @@ public class Roulette implements Exit {
                     break;
 
                 default:
-                    System.out.println("Vous n'avez pas rentré P , I ou R");
-                    this.choixParité();
+                    System.out.println("Vous n'avez pas rentré P, I ou R");
+                    this.choixParite();
             }
         } else {
-            System.out.println("Vous avez déjà choisis pair et impair");
+            System.out.println("Vous avez déjà choisi pair et impair");
         }
 
-        this.choixJoueur();
 
     }
 
@@ -193,28 +194,32 @@ public class Roulette implements Exit {
         Scanner sc = new Scanner(System.in);
 
         if (ChoixJoueur.choixRouge != true || ChoixJoueur.choixNoir != true) {
-            System.out.println("Rouge (R) , Noir (N) ou Retour (B)?  ");
+            System.out.println("Rouge (R) , Noir (N) ou Retour (B) ");
             String choixcouleur = sc.next();
 
             switch (choixcouleur) {
 
                 case "R":
                     if (ChoixJoueur.choixRouge == true) {
-                        System.out.println("Vous avez déjà choisis rouge");
+                        System.out.println("Vous avez déjà choisi rouge");
                         this.choixCouleur();
                     } else {
                         ChoixJoueur.choixRouge = true;
                         montantMise("Rouge");
+                                this.choixJoueur();
+
                     }
                     break;
 
                 case "N":
                     if (ChoixJoueur.choixNoir == true) {
-                        System.out.println("Vous avez déjà choisis noir");
+                        System.out.println("Vous avez déjà choisi noir");
                         this.choixCouleur();
                     } else {
                         ChoixJoueur.choixNoir = true;
                         montantMise("Noir");
+                                this.choixJoueur();
+
                     }
                     break;
 
@@ -223,46 +228,44 @@ public class Roulette implements Exit {
                     break;
 
                 default:
-                    System.out.println("Vous n'avez pas rentré R , N ou B");
+                    System.out.println("Vous n'avez pas rentré R, N ou B");
                     this.choixCouleur();
             }
         } else {
-            System.out.println("Vous avez déjà choisis Rouge et Noir");
+            System.out.println("Vous avez déjà choisi Rouge et Noir");
         }
 
-        this.choixJoueur();
+       
 
     }
 
     /**
-     * Permet de véirier si le nombre choisis a déjà été choisis par le joueur
+     * Permet de vérifier si le nombre choisi a déjà été choisi par le joueur
      */
     public void verifNombre() {
 
-        for (ChoixJoueurNumber elem : ChoixJoueur.number) {
-            if (elem.choix == SetRoulette.nombre) {
-                this.gainArgent(elem.mise * 35);
-            }
-        }
+        ChoixJoueur.number.stream().filter((elem) -> (elem.choix == SetRoulette.nombre)).forEach((elem) -> {
+            this.gainArgent(elem.mise * 35);
+        });
 
     }
 
     /**
-     * Permet de véirifer si la parité choisis à déjà été choisis  par le joueur
+     * Permet de vérifier si la parité choisie a déjà été choisie par le joueur
      */
     public void verifParité() {
 
-        if (ChoixJoueur.choixPair == true && SetRoulette.parite == "pair") {
+        if (ChoixJoueur.choixPair == true && "pair".equals(SetRoulette.parite)) {
             this.gainArgent(ChoixJoueur.misePair * 2);
         } else {
-            if (ChoixJoueur.choixImpair == true &&SetRoulette.parite== "impair") {
+            if (ChoixJoueur.choixImpair == true &&"impair".equals(SetRoulette.parite)) {
                 this.gainArgent(ChoixJoueur.miseImpair * 2);
             }
         }
     }
 
     /**
-     * Permer de vérifier si la couleur choisis à déjà été choisis par le joueur
+     * Permet de vérifier si la couleur choisie a déjà été choisie par le joueur
      */
     public void verifCouleur() {
 
@@ -276,16 +279,16 @@ public class Roulette implements Exit {
     }
 
     /**
-     * Demande au joueur la montant de la mise souhaité et vérifie si celui si possède assez d'argent 
+     * Demande au joueur le montant de la mise souhaitée et vérifie si celui-ci possède assez d'argent 
      * @param jeux 
-     *                  Représente sur quoi le joueur mise ( Nombre, Parité, Couleur)
+     *                  Représente sur quoi le joueur mise (Nombre, Parité, Couleur)
      * @see Player
      */                  
     public void montantMise(String jeux) {
       
         if (Player.argent != 0) {
 
-            verifInteger();
+            VerifMise();
 
             if (choixmise == 0) {
                 System.out.println("Vous ne pouvez pas miser 0");
@@ -294,13 +297,13 @@ public class Roulette implements Exit {
             } else {
                 
             if (Player.argent - choixmise < 0) {
-            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
+            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent + " $");
             this.montantMise(jeux);
             
         } else {
             this.SaveMise(jeux, choixmise);
           
-            System.out.println("Il vous reste  " + Player.argent);
+            System.out.println("Il vous reste  " + Player.argent + " $");
                }
             }
         } 
@@ -311,20 +314,21 @@ public class Roulette implements Exit {
     }
     
     /**
-     * Permet de vérifié si une entrée au clavier et bien un entier
+     * Permet de vérifier si une entrée au clavier est bien un entier
      */
-    public void verifInteger() {
+    @Override
+    public void VerifMise() {
         
          
            Scanner sc = new Scanner(System.in);
-            System.out.println("Combien voulez vous miser?");
+            System.out.println("Combien voulez vous miser ?");
             
-          //  choixmise = sc.nextInt();
+          
               try {
                      choixmise = sc.nextInt();
              } catch (InputMismatchException e) {
                  System.out.println("Veuillez rentrer un entier");
-                verifInteger();
+                VerifMise();
              }
               
                sc.nextLine();
@@ -332,11 +336,11 @@ public class Roulette implements Exit {
     }
 
     /**
-     * Associe la mise du joueur sur une catégorie ( Nombre, Parité, Couleur) dans les choix du joueur
+     * Associe la mise du joueur sur une catégorie (Nombre, Parité, Couleur) dans les choix du joueur
      * @param jeux
-     *                  Représente sur quoi le joueur mise ( Nombre, Parité, Couleur)
+     *                  Représente sur quoi le joueur mise (Nombre, Parité, Couleur)
      * @param montant 
-     *                  Représente la mise choisis par le joueur
+     *                  Représente la mise choisie par le joueur
      * @see ChoixJoueur
      */
     public void SaveMise(String jeux, int montant) {
@@ -371,7 +375,7 @@ public class Roulette implements Exit {
     /**
      * Donne l'argent gagné au joueur
      * @param gain  
-     *                      Argent gagner sur un type de mise
+     *                      Argent gagné sur un type de mise
      */
     public void gainArgent(int gain) {
 
@@ -381,7 +385,7 @@ public class Roulette implements Exit {
     /**
      * Enlève l'argent misé au joueur
      * @param mise 
-     *                  Somme misé par le joueur
+     *                  Somme misée par le joueur
      */
     public void miseArgent(int mise) {
 
@@ -390,12 +394,12 @@ public class Roulette implements Exit {
     }
     
     /**
-     * Method implémenté de l'interface permettant d'afficher un message d'aurevoir personnalisé avec le nom du jeux 
+     * Methode implémentée de l'interface permettant d'afficher un message d'aurevoir personnalisé avec le nom du jeu
      */
     @Override
    public void Quitter() {
-          System.out.println("Vous quittez la Roulette");
-          //MenuCasino.ChoixMenu.argent = PorteMonnaie.argent;          // Lorsque qu'on arrête la roulette, l'argent est récupéré
+          System.out.println("Vous quittez la roulette");
+          
    }
 
 }

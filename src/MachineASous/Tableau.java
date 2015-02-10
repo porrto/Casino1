@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package MachineASous;
 
 import java.util.Random;
-import java.lang.NullPointerException;
 
 /**
  *
@@ -25,7 +19,7 @@ public class Tableau {
                 try {
                     cases[i][j] = caseAleatoire();
                 } catch (NullPointerException e) {
-                    System.out.println("merde");
+                    System.out.println("Erreur");
                 }
             }
         }

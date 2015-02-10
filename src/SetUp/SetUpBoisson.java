@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SetUp;
 
 import java.util.ArrayList;
@@ -11,25 +6,26 @@ import Bar.Boisson;
 
 /**
  *
- * 
- * 
- * Permet de construire les différentes listes de boissons qui seront présentes dans la carte
+ *
+ *
+ * Permet de construire les différentes listes de boissons qui seront présentes
+ * dans la carte
+ *
  * @author clement
  */
 public class SetUpBoisson {
 
     /**
-     * On crée les Alcools voulu dans notre carte
-     * 
-     * @return 
-     *          On retourne une liste d'alcool de type Boisson
+     * On crée les Alcools voulus dans notre carte
+     *
+     * @return On retourne une liste d'alcool de type Boisson
      * @see Bar.Boisson
      */
     public List<Boisson> setUpAlcool() {
 
-        Boisson vodka = new Boisson("vodka", 6, 1);
-        Boisson martini = new Boisson("martini", 6, 2);
-        Boisson whisky = new Boisson("wiskie", 6, 3);
+        Boisson vodka = new Boisson("Vodka", 6, 1);
+        Boisson martini = new Boisson("Martini", 6, 2);
+        Boisson whisky = new Boisson("Whisky", 6, 3);
 
         List<Boisson> listAlcool = new ArrayList();
 
@@ -40,11 +36,11 @@ public class SetUpBoisson {
         return listAlcool;
 
     }
-   /**
-     * On crée les Sodas voulu dans notre carte
-     * 
-     * @return 
-     *          On retourne une liste de sodas de type Boisson
+
+    /**
+     * On crée les Sodas voulus dans notre carte
+     *
+     * @return On retourne une liste de sodas de type Boisson
      * @see Bar.Boisson
      */
     public List<Boisson> setUpSoda() {
@@ -61,11 +57,11 @@ public class SetUpBoisson {
 
         return listSoda;
     }
-   /**
+
+    /**
      * On crée les Cocktails voulu dans notre carte
-     * 
-     * @return 
-     *          On retourne une liste de cokctails de type Boisson
+     *
+     * @return On retourne une liste de cocktails de type Boisson
      * @see Bar.Boisson
      */
     public List<Boisson> setUpCocktails() {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Bar;
 
 import Interface.Exit;
@@ -13,38 +8,36 @@ import java.util.Scanner;
 import java.util.Random;
 
 /**
- * 
- * 
- * Cette classe va permettre au joueur de choisir une boisson : 
+ *
+ *
+ * Cette classe va permettre au joueur de choisir une boisson :
  * <ul>
- * <li>On va verifier si le joueur dispose assez d'argent</li>
- * <li>Si le joueur est soul il sera viré</li>
- * <li>Après être viré il aura une chance sur deux de pouvoir ré-intégrer le casino</li>
+ * <li>On va vérifier si le joueur dispose d'assez d'argent</li>
+ * <li>Si le joueur est saoul il sera viré</li>
+ * <li>Après être viré il aura une chance sur deux de pouvoir ré-intégrer le
+ * casino</li>
  * </ul>
- * 
- *@author clement
+ *
+ * @author clement
  */
 public class Bar implements Exit {
-
-
 
     /**
      * Désigne le numéro de la boisson entré au clavier
      */
     public int choixBoisson;
 
-
     /**
      * Permet de démarrer le bar
      */
     public void initBar() {
-                
-         this.choixJoueur();
+
+        this.choixJoueur();
     }
-    
+
     /**
-     *  Menu principale permettant au joueur de choisir une boisson
-     *          Si le joueur est soul, il est viré
+     * Menu principal permettant au joueur de choisir une boisson Si le joueur
+     * est saoul, il est viré
      */
     public void choixJoueur() {
 
@@ -53,15 +46,15 @@ public class Bar implements Exit {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Vous avez" + Player.argent);
-        if (Alcoolemie.soul == true) {
+        System.out.println("Vous avez" + Player.argent + " $ ");
+        if (Alcoolemie.saoul == true) {
             this.fired();
         } else {
 
             System.out.println("Voulez vous un Cocktail (C), un Soda (S), un Alcool fort (A), sortir du bar (R) ? ");
             choixBar = sc.next();
 
-            if (choixBar.equals("C") || choixBar.equals("S") || choixBar.equals("A") || choixBar.equals("R") ) {
+            if (choixBar.equals("C") || choixBar.equals("S") || choixBar.equals("A") || choixBar.equals("R")) {
                 switch (choixBar) {
 
                     case "C":
@@ -73,12 +66,12 @@ public class Bar implements Exit {
                     case "A":
                         choixAlcools(boisson);
                         break;
-                        
+
                     case "R":
                         this.Quitter();
                 }
             } else {
-                System.out.println("Vous n'avez pas rentrée C, S ou A ");
+                System.out.println("Vous n'avez pas rentré C, S, R ou A ");
                 this.choixJoueur();
 
             }
@@ -86,10 +79,9 @@ public class Bar implements Exit {
     }
 
     /**
-     *  Permet de choisir un Cocktail parmis la liste proposé
-     * 
-     * @param cocktails
-     *              Contient la liste des cocktails du SetUpBoisson
+     * Permet de choisir un Cocktail parmi la liste proposée
+     *
+     * @param cocktails Contient la liste des cocktails du SetUpBoisson
      */
     public void choixCocktails(SetUpBoisson cocktails) {
 
@@ -97,19 +89,19 @@ public class Bar implements Exit {
         System.out.println("Quel Cocktail voulez-vous ? ");
 
         cocktails.setUpCocktails().stream().forEach((elem) -> {
-            System.out.println(elem.name + "   " + elem.price + "   (" + elem.taux + "°)"  + "   (" + elem.number + ")");
+            System.out.println(elem.name + "   " + elem.price + "$   (" + elem.taux + "°)" + "   (" + elem.number + ")");
         });
 
         try {
             choixBoisson = sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Vous n'avez pas rentré les alcool proposés");
+            System.out.println("Vous n'avez pas rentré les alcools proposés");
             this.choixCocktails(cocktails);
 
         }
 
         if (choixBoisson > cocktails.setUpCocktails().size() || choixBoisson == 0) {
-            System.out.println("Veuillez entrer un chiffre correspond à un Alcool");
+            System.out.println("Veuillez entrer un chiffre correspondant à un Alcool");
             this.choixCocktails(cocktails);
         } else {
 
@@ -119,29 +111,29 @@ public class Bar implements Exit {
         }
 
     }
- /**
-     *  Permet de choisir un Soda parmis la liste proposé
-     * 
-     * @param soda
-     *              Contient la liste des cocktails du SetUpBoisson
+
+    /**
+     * Permet de choisir un Soda parmi la liste proposée
+     *
+     * @param soda Contient la liste des cocktails du SetUpBoisson
      */
     public void choixSoda(SetUpBoisson soda) {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Soda voulez-vous ? ");
         soda.setUpSoda().stream().forEach((elem) -> {
-            System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
+            System.out.println(elem.name + "   " + elem.price + "$   (" + elem.number + ")");
         });
 
         try {
             choixBoisson = sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Vous n'avez pas rentré les alcool proposés");
+            System.out.println("Vous n'avez pas rentré les alcools proposés");
             this.choixSoda(soda);
         }
 
         if (choixBoisson > soda.setUpAlcool().size() || choixBoisson == 0) {
-            System.out.println("Veuillez entrer un chiffre correspond à un Alcool");
+            System.out.println("Veuillez entrer un chiffre correspondant à un Alcool");
             this.choixSoda(soda);
         } else {
 
@@ -150,28 +142,28 @@ public class Bar implements Exit {
             });
         }
     }
- /**
-     *  Permet de choisir un Alcools parmis la liste proposé
-     * 
-     * @param alcool
-     *              Contient la liste des cocktails du SetUpBoisson
+
+    /**
+     * Permet de choisir un alcool parmi la liste proposée
+     *
+     * @param alcool Contient la liste des cocktails du SetUpBoisson
      */
     public void choixAlcools(SetUpBoisson alcool) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Quel Alcool voulez-vous ? ");
+        System.out.println("Quel alcool voulez-vous ? ");
         alcool.setUpAlcool().stream().forEach((elem) -> {
-            System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
+            System.out.println(elem.name + "   " + elem.price + "$   (" + elem.number + ")");
         });
         try {
             choixBoisson = sc.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Vous n'avez pas rentré les alcool proposés");
+            System.out.println("Vous n'avez pas rentré les alcools proposés");
             this.choixAlcools(alcool);
         }
 
         if (choixBoisson > alcool.setUpAlcool().size() || choixBoisson == 0) {
-            System.out.println("Veuillez entrer un chiffre correspond à un Alcool");
+            System.out.println("Veuillez entrer un chiffre correspondant à un alcool");
             this.choixAlcools(alcool);
         } else {
 
@@ -180,26 +172,26 @@ public class Bar implements Exit {
             });
         }
     }
- /**
-     *  Verifie s'il y a assez d'argent pour acheter la boisson selectionnée précédemment
-     * 
-     * @param prix 
-     *          Le prix de la boisson selectionnée
-     * 
-     * @param taux
-     *          Le taux d'alcoolémie des boisson type Alcool et Cokctail
+
+    /**
+     * Verifie s'il y a assez d'argent pour acheter la boisson selectionnée
+     * précédemment
+     *
+     * @param prix Le prix de la boisson selectionnée
+     *
+     * @param taux Le taux d'alcoolémie des boissons type Alcool et Cocktail
      */
     public void verifArgent(int prix, double taux) {
 
         if (Player.argent - prix < 0) {
-            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent);
+            System.out.println("Vous n'avez pas assez d'argent, il ne vous reste que " + Player.argent + " $");
             this.choixJoueur();
         } else {
 
             Alcoolemie.verifTaux(taux);
             if (Alcoolemie.drink == true) {
                 Player.argent = Player.argent - prix;
-                System.out.println("Il vous reste  " + Player.argent);
+                System.out.println("Il vous reste  " + Player.argent + " $");
                 this.choixJoueur();
 
             } else {
@@ -208,20 +200,22 @@ public class Bar implements Exit {
         }
 
     }
- /**
-     *  Losque le joueur est soul, on lui laisse une chance sur 2 de re rentrer dans le casino
+
+    /**
+     * Losque le joueur est saoul, on lui laisse une chance sur deux de re
+     * rentrer dans le casino
      */
     public void fired() {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Vous êtes viré du casino, vous êtes soul");
-        System.out.println("Voulez vous rententer votre chance ? (Y) or (N) ");
+        System.out.println("Vous êtes viré du casino, vous êtes saoul");
+        System.out.println("Voulez vous rententer votre chance ? (O) or (N) ");
         String retenterchance = sc.next();
 
         switch (retenterchance) {
-            case "Y":
-                System.out.println("Vous allez essayer de passer malgrès le videur ...");
+            case "O":
+                System.out.println("Vous allez essayer de passer malgrè le videur ...");
                 Random rand = new Random();
                 boolean pass = rand.nextBoolean();
 
@@ -237,22 +231,23 @@ public class Bar implements Exit {
                 break;
 
             case "N":
-                System.out.println("au revoir");
+                System.out.println("Au revoir");
                 MenuCasino.ChoixMenu.quitter = true;
                 break;
 
             default:
-                System.out.println("Vous n'avez pas rentré (Y) or (N)");
+                System.out.println("Vous n'avez pas rentré (O) or (N)");
         }
 
     }
-     /**
+
+    /**
      * Annonce au joueur qu'il quitte le Bar
      */
     @Override
     public void Quitter() {
         System.out.println("Vous sortez du bar");
-        //MenuCasino.ChoixMenu.argent = PorteMonnaie.argent;
+
     }
 
 }
