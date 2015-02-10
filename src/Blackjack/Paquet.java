@@ -18,7 +18,7 @@ public class Paquet {
         cartesTirees = 0;
     }
 
-    public void mélanger() {
+    public void melanger() {
 
         for (int i = 51; i > 0; i--) {
             int rand = (int) (Math.random() * (i + 1));
@@ -37,7 +37,7 @@ public class Paquet {
     public Carte tirerCarte() {
 
         if (cartesTirees == 52) {
-            mélanger();
+            melanger();
         }
         cartesTirees++;
         return paquet[cartesTirees - 1];

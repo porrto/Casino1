@@ -22,10 +22,10 @@ public class Player {
      * d'alcoolémie à 0
      *
      * @param argent Argent du joueur
-     * @param alcoolémie Alcoolémie du joueur = 0 au début
+     * @param alcoolemie Alcoolémie du joueur = 0 au début
      */
-    public Player(double argent, double alcoolémie) {
+    public Player(double argent, double alcoolemie) {
         Player.argent = argent;
-        Player.tauxalcool = alcoolémie;
+        Player.tauxalcool = alcoolemie;
     }
 }

@@ -81,7 +81,7 @@ public class Roulette implements Exit,Mise {
                     } else {
 
                         this.verifNombre();   // On vérifie les paris du joueur avec le tirage de base
-                        this.verifParité();
+                        this.verifParite();
                         this.verifCouleur();
 
                         System.out.println("Le tirage était de couleur " + SetRoulette.color + " de parité " + SetRoulette.parite + " et le nombre " + SetRoulette.nombre);
@@ -144,9 +144,9 @@ public class Roulette implements Exit,Mise {
 
         if (ChoixJoueur.choixPair != true || ChoixJoueur.choixImpair != true) {
             System.out.println("Pair (P) , Impair (I) ou Retour (R) ?  ");
-            String choixparité = sc.next();
+            String choixparite = sc.next();
 
-            switch (choixparité) {
+            switch (choixparite) {
 
                 case "P":
                     if (ChoixJoueur.choixPair == true) {
@@ -253,7 +253,7 @@ public class Roulette implements Exit,Mise {
     /**
      * Permet de vérifier si la parité choisie a déjà été choisie par le joueur
      */
-    public void verifParité() {
+    public void verifParite() {
 
         if (ChoixJoueur.choixPair == true && "pair".equals(SetRoulette.parite)) {
             this.gainArgent(ChoixJoueur.misePair * 2);

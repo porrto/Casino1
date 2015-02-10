@@ -33,7 +33,7 @@ public class Blackjack implements Exit, Mise {
 
     } // fin main
 
-    public void question() {
+    public void Rejouer() {
 
         Scanner sc = new Scanner(System.in);
 
@@ -56,7 +56,7 @@ public class Blackjack implements Exit, Mise {
                     this.Quitter();
                 } else {
                     System.out.println("Veuillez entrer O ou N ");
-                    this.question();
+                    this.Rejouer();
                 }
             }
 
@@ -73,7 +73,7 @@ public class Blackjack implements Exit, Mise {
         mainCroupier = new MainBlackjack();
         mainJoueur = new MainBlackjack();
 
-        paquet.mélanger();
+        paquet.melanger();
         mainCroupier.ajouterCarte(paquet.tirerCarte());
         mainCroupier.ajouterCarte(paquet.tirerCarte());
         mainJoueur.ajouterCarte(paquet.tirerCarte());
@@ -92,7 +92,7 @@ public class Blackjack implements Exit, Mise {
             System.out.println("Le croupier a un Blackjack. Le croupier gagne.");
             Player.argent = Player.argent - mise;
             getblackjack = true;
-            question();
+            Rejouer();
 
         }
 
@@ -105,7 +105,7 @@ public class Blackjack implements Exit, Mise {
             System.out.println("Vous avez un Blackjack. Vous gagnez.");
             Player.argent = Player.argent + mise * 1.5;
             getblackjack = true;
-            question();
+            Rejouer();
 
         }
 
@@ -161,7 +161,7 @@ public class Blackjack implements Exit, Mise {
                             + mainCroupier.selectionnerCarte(1));
                     Player.argent = Player.argent - mise;
                     joueurexit = true;
-                    question();
+                    Rejouer();
 
                 }
             }
@@ -179,7 +179,7 @@ public class Blackjack implements Exit, Mise {
                     System.out.println("Le dealer a dépassé 21.  Vous avez gagné.");
                     Player.argent = Player.argent + mise;
                     croupiersuperieur21 = true;
-                    question();
+                    Rejouer();
                 }
             }
             if (croupiersuperieur21 == false) {
@@ -191,20 +191,20 @@ public class Blackjack implements Exit, Mise {
                     System.out.println("Egalité. Le croupier gagne. Vous avez perdu.");
                     Player.argent = Player.argent - mise;
 
-                    question();
+                    Rejouer();
                 } else if (mainCroupier.valeurBlackJack() > mainJoueur.valeurBlackJack() && mainCroupier.valeurBlackJack() <= 21 && mainJoueur.valeurBlackJack() <= 21) {
                     System.out.println("Le croupier gagne " + mainCroupier.valeurBlackJack()
                             + " points à " + mainJoueur.valeurBlackJack() + ".");
                     Player.argent = Player.argent - mise;
 
-                    question();
+                    Rejouer();
                 } else {
                     System.out.println("Vous gagnez " + mainJoueur.valeurBlackJack()
                             + " points à " + mainCroupier.valeurBlackJack() + ".");
 
                     Player.argent = Player.argent + mise;
 
-                    question();
+                    Rejouer();
                 }
             }
         }
