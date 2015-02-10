@@ -31,7 +31,7 @@ public class Blackjack implements Exit {
     public boolean joueurexit = false ;
     public boolean getblackjack = false ;
 
-    public  void Jouer() {
+    public  void AccueilBlackJack() {
 
         System.out.println("Bienvenue à la table de BlackJack");
         System.out.println("");
@@ -54,6 +54,7 @@ public class Blackjack implements Exit {
         if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
             System.out.println("Vous quittez la table avec " + Player.argent + "$");
+            joueurexit = true ;
         } else {
             System.out.println("Continuer (C) ou Arrêter (A) ?");
             char choix = '?';
@@ -70,8 +71,12 @@ public class Blackjack implements Exit {
             } while (choix != 'C' && choix != 'A');
 
             if (choix == 'C') {
-
+                
+                croupiersuperieur21 = false;
+                joueurexit = false ;
+                getblackjack = false ;
                 jouerBlackjack();
+                
             } else {
             
                 this.Quitter();
@@ -206,11 +211,7 @@ public class Blackjack implements Exit {
 
         }
 
-        /* System.out.println("");
-        System.out.println("Le joueur passe");
-        System.out.println("Les cartes du croupier sont");
-        System.out.println("   " + mainCroupier.selectionnerCarte(0));
-        System.out.println("    " + mainCroupier.selectionnerCarte(1)); */
+      
         
         if ( joueurexit == false && getblackjack == false ) {
         
