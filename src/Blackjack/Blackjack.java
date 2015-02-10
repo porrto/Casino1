@@ -51,36 +51,31 @@ public class Blackjack implements Exit {
 
     public  void question()  {
 
+        Scanner sc = new Scanner(System.in);
+        
         if (Player.argent == 0) {
             System.out.println("Vous n'avez plus d'argent!");
-            System.out.println("Vous quittez la table avec " + Player.argent + "$");
+            this.Quitter();
             joueurexit = true ;
         } else {
-            System.out.println("Continuer (C) ou Arrêter (A) ?");
-            char choix = '?';
-            // Réponse utilisateur.
-            do {
-                try {
-                    choix = (char) System.in.read();
-                } catch (IOException e) {
-                    System.out.println("Error reading from user");
-                }
-                if (choix != 'C' && choix != 'A') {
-                    System.out.println("Veuillez entrer C ou A");
-                }
-            } while (choix != 'C' && choix != 'A');
+             System.out.println("Voulez vous rejouer ? (Y) or (N) ");
+                            String choixnouvellepartie = sc.next();
 
-            if (choix == 'C') {
-                
-                croupiersuperieur21 = false;
-                joueurexit = false ;
-                getblackjack = false ;
-                jouerBlackjack();
-                
-            } else {
+                            if (choixnouvellepartie.equals("Y")) {
+                              
+                                croupiersuperieur21 = false;
+                                joueurexit = false ;
+                                 getblackjack = false ;
+                                this.jouerBlackjack();
+                            } else {
+                                if (choixnouvellepartie.equals("N")) {
+                                 this.Quitter();
+                                } else {
+                                    System.out.println("Veuillez entrer Y ou N ");
+                                  this.question();
+                                }
+                            }
             
-                this.Quitter();
-            }
         }
     }
 
