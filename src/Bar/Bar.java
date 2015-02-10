@@ -96,9 +96,9 @@ public class Bar implements Exit {
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Cocktail voulez-vous ? ");
 
-        for (Boisson elem : cocktails.setUpCocktails()) {
+        cocktails.setUpCocktails().stream().forEach((elem) -> {
             System.out.println(elem.name + "   " + elem.price + "   (" + elem.taux + "°)"  + "   (" + elem.number + ")");
-        }
+        });
 
         try {
             choixBoisson = sc.nextInt();
@@ -113,12 +113,9 @@ public class Bar implements Exit {
             this.choixCocktails(cocktails);
         } else {
 
-            for (Boisson  elem : cocktails.setUpCocktails()) {
-
-                if (choixBoisson == elem.number) {
-                    verifArgent(elem.price, elem.taux);
-                }
-            }
+            cocktails.setUpCocktails().stream().filter((elem) -> (choixBoisson == elem.number)).forEach((elem) -> {
+                verifArgent(elem.price, elem.taux);
+            });
         }
 
     }
@@ -132,9 +129,9 @@ public class Bar implements Exit {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Soda voulez-vous ? ");
-       for (Boisson elem : soda.setUpSoda()) {
+        soda.setUpSoda().stream().forEach((elem) -> {
             System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
-        }
+        });
 
         try {
             choixBoisson = sc.nextInt();
@@ -148,12 +145,9 @@ public class Bar implements Exit {
             this.choixSoda(soda);
         } else {
 
-        for (Boisson elem : soda.setUpSoda()) {
-
-                if (choixBoisson == elem.number) {
-                    verifArgent(elem.price, 0);
-                }
-            }
+            soda.setUpSoda().stream().filter((elem) -> (choixBoisson == elem.number)).forEach((elem) -> {
+                verifArgent(elem.price, 0);
+            });
         }
     }
  /**
@@ -166,9 +160,9 @@ public class Bar implements Exit {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Quel Alcool voulez-vous ? ");
-    for (Boisson elem : alcool.setUpAlcool()) {
+        alcool.setUpAlcool().stream().forEach((elem) -> {
             System.out.println(elem.name + "   " + elem.price + "   (" + elem.number + ")");
-        }
+        });
         try {
             choixBoisson = sc.nextInt();
         } catch (InputMismatchException e) {
@@ -181,12 +175,9 @@ public class Bar implements Exit {
             this.choixAlcools(alcool);
         } else {
 
-        for (Boisson elem : alcool.setUpAlcool()) {
-
-                if (choixBoisson == elem.number) {
-                    verifArgent(elem.price, elem.taux);
-                }
-            }
+            alcool.setUpAlcool().stream().filter((elem) -> (choixBoisson == elem.number)).forEach((elem) -> {
+                verifArgent(elem.price, elem.taux);
+            });
         }
     }
  /**

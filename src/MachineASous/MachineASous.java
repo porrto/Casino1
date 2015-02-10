@@ -40,36 +40,32 @@ public class MachineASous implements Exit {
 
     public void question() {
 
-        if (Player.argent == 0) {
-            System.out.println("Vous n'avez plus d'argent!");
-            System.out.println("Vous quittez la table avec " + Player.argent + "$");
-        } else {
-            System.out.println("Continuer (C) ou Arrêter (A) ?");
-            char choix = '?';
-            // User's response, 'C' or 'A'.
-            do {
-                try {
-                    choix = (char) System.in.read();
-                } catch (IOException e) {
-                    System.out.println("Error reading from user");
-                }
-                if (choix != 'C' && choix != 'A') {
-                    System.out.println("Veuillez entrer C ou A");
-                }
-            } while (choix != 'C' && choix != 'A');
+        String choix="??" ;
+        Scanner sc = new Scanner(System.in);
+       if (Player.argent != 0) {            // On propose au joueur de re-joue s'il lui reste de l'argent
+                            System.out.println("Voulez vous rejouer ? (Y) or (N) ");
+                            String choixnouvellepartie = sc.next();
 
-            /* If the user Hits, the user gets a card.  If the user Stands,
-             the loop ends (and it's the dealer's turn to draw cards).
-             */
-            if (choix == 'C') {
-                // Loop ends; user is done taking cards.
-                this.jouerMachineASous();
-            } else {
-
-              this.Quitter();
-            }
-        }
+                            if (choixnouvellepartie.equals("Y")) {
+                                
+                                this.jouerMachineASous();
+                            } else {
+                                if (choixnouvellepartie.equals("N")) {
+                                 this.Quitter();
+                                } else {
+                                    System.out.println("Veuillez entrer Y ou N ");
+                                  this.question();
+                                }
+                            }
+                            
+                        }
+       else {
+           System.out.println("Vous n'avez plus d'argent!");
+            
+           this.Quitter();
+       }
     }
+    
 
     public void jouerMachineASous() {
 
