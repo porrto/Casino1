@@ -1,7 +1,18 @@
 package Blackjack;
 
+/**
+ * Classe fille de Main qui définit une main de Blackjack
+ *
+ * @see Main
+ * @author enzo
+ */
 public class MainBlackjack extends Main {
 
+    /**
+     * Calcule la valeur de la main d'un joueur
+     *
+     * @return la valeur de la main (une tête vaut 10, un as vaut 1 ou 10)
+     */
     public int valeurBlackJack() {
 
         int val;

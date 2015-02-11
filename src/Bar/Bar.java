@@ -221,7 +221,8 @@ public class Bar implements Exit {
 
                 if (pass == true) {
                     System.out.println(" Vous êtes re-rentré dans le casino");
-                    MenuCasino.ChoixMenu.fired = true;
+                    MenuCasino.ChoixMenu.fired = false;
+                    Alcoolemie.saoul = false;
 
                 } else {
                     System.out.println("Le videur vous a repéré, désolé");

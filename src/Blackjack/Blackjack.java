@@ -7,13 +7,36 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ *
+ *
+ * Cette classe va permettre au joueur de jouer au Blackjack
+ *
+ *
+ * @author clement
+ */
 public class Blackjack implements Exit, Mise {
 
+    /**
+     * Variable qui indique si le croupier a un score supérieur à 21
+     */
     public boolean croupiersuperieur21 = false;
+    /**
+     * Variable qui indique si le joueur veut quitter la table
+     */
     public boolean joueurexit = false;
+    /**
+     * Variable qui indique si le joueur a un Blackjack
+     */
     public boolean getblackjack = false;
+    /**
+     * Variable qui représente la mise du joueur
+     */
     public double mise;
 
+    /**
+     * Introduit la table de BlackJack
+     */
     public void AccueilBlackJack() {
 
         System.out.println("");
@@ -31,8 +54,11 @@ public class Blackjack implements Exit, Mise {
 
         jouerBlackjack();
 
-    } // fin main
+    }
 
+    /**
+     * Demande au joueur s'il veut quitter la table ou rejouer une partie
+     */
     public void Rejouer() {
 
         Scanner sc = new Scanner(System.in);
@@ -53,6 +79,8 @@ public class Blackjack implements Exit, Mise {
                 this.jouerBlackjack();
             } else {
                 if (choixnouvellepartie.equals("N")) {
+                    croupiersuperieur21 = false;
+                    joueurexit = true;
                     this.Quitter();
                 } else {
                     System.out.println("Veuillez entrer O ou N ");
@@ -63,6 +91,10 @@ public class Blackjack implements Exit, Mise {
         }
     }
 
+    /**
+     * Methode principale : définit les règles du Blacjack, gère le déroulement
+     * du jeu
+     */
     public void jouerBlackjack() {
 
         Paquet paquet;
@@ -182,7 +214,7 @@ public class Blackjack implements Exit, Mise {
                     Rejouer();
                 }
             }
-            if (croupiersuperieur21 == false) {
+            if (croupiersuperieur21 == false && joueurexit == false) {
 
                 System.out.println("Le total du croupier est " + mainCroupier.valeurBlackJack());
 
@@ -210,6 +242,10 @@ public class Blackjack implements Exit, Mise {
         }
     }
 
+    /**
+     * Vérifie si la mise est correcte : positive et inférieure au montant
+     * disponible
+     */
     @Override
     public void VerifMise() {
 
@@ -229,6 +265,9 @@ public class Blackjack implements Exit, Mise {
 
     }
 
+    /**
+     * Timer de 500 ms pour plus de suspense
+     */
     public void sleep500() {
         try {
             Thread.sleep(500);
@@ -237,10 +276,13 @@ public class Blackjack implements Exit, Mise {
         }
     }
 
+    /**
+     * Annonce au joueur qu'il quitte la table
+     */
     @Override
     public void Quitter() {
         System.out.println("Vous quittez la table avec " + Player.argent + "$");
-        // MenuCasino.ChoixMenu.argent = argent;
+
     }
 
-} // end classe Blackjack
+} // end class Blackjack

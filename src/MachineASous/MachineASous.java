@@ -7,13 +7,20 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
+ * Jeu Machine à sous
  *
- * @author isen
+ * @author enzo
  */
 public class MachineASous implements Exit, Mise {
 
+    /**
+     * La mise du joueur
+     */
     public double mise;
 
+    /**
+     * Introduit le jeu
+     */
     public void Jouer() {
 
         System.out.println("Bienvenue à la machine à sous");
@@ -31,22 +38,25 @@ public class MachineASous implements Exit, Mise {
 
     }
 
+    /**
+     * Demande au joueur s'il veut quitter le jeu ou rejouer une partie
+     */
     public void Rejouer() {
 
         String choix = "??";
         Scanner sc = new Scanner(System.in);
         if (Player.argent != 0) {
-            System.out.println("Voulez vous rejouer ? (Y) or (N) ");
+            System.out.println("Voulez vous rejouer ? (O) or (N) ");
             String choixnouvellepartie = sc.next();
 
-            if (choixnouvellepartie.equals("Y")) {
+            if (choixnouvellepartie.equals("O")) {
 
                 this.jouerMachineASous();
             } else {
                 if (choixnouvellepartie.equals("N")) {
                     this.Quitter();
                 } else {
-                    System.out.println("Veuillez entrer Y ou N ");
+                    System.out.println("Veuillez entrer O ou N ");
                     this.Rejouer();
                 }
             }
@@ -58,13 +68,14 @@ public class MachineASous implements Exit, Mise {
         }
     }
 
+    /**
+     * Lance la machine à sous, gère les gains
+     */
     public void jouerMachineASous() {
 
         Tableau tirage = new Tableau();
 
-        int[][] montableau;
-
-        montableau = tirage.creerTableau();
+        tirage.creerTableau();
 
         System.out.println("Vous avez " + Player.argent + " dollars.");
 
@@ -126,7 +137,7 @@ public class MachineASous implements Exit, Mise {
         }
 
         if (tirage.cases[0][1] == tirage.cases[1][1] && tirage.cases[0][1] == tirage.cases[2][1]) {
-            //colonne 1
+            //colonne 2
 
             Player.argent = calculGains(Player.argent, mise, tirage, 0, 1);
             System.out.println("Vous avez une colonne de " + tirage.cases[0][1]);
@@ -134,7 +145,7 @@ public class MachineASous implements Exit, Mise {
         }
 
         if (tirage.cases[0][2] == tirage.cases[1][2] && tirage.cases[0][2] == tirage.cases[2][2]) {
-            //colonne 1
+            //colonne 3
 
             Player.argent = calculGains(Player.argent, mise, tirage, 0, 2);
             System.out.println("Vous avez une colonne de " + tirage.cases[0][2]);
@@ -149,6 +160,17 @@ public class MachineASous implements Exit, Mise {
 
     }
 
+    /**
+     * Calcule les gains selon le tirage de la machine à sous
+     *
+     * @param argent L'argent total du joueur
+     * @param mise La mise pour la partie en cours
+     * @param tirage Le tirage de la machine à sous (tableau 3x3 d'entiers)
+     * @param i Le numéro de ligne d'une case faisant partie d'une ligne
+     * gagnante
+     * @param j Le numéro de colonne de la même case
+     * @return l'argent du joueur après application des gains
+     */
     public static double calculGains(double argent, double mise, Tableau tirage, int i, int j) {
 
         if (tirage.cases[i][j] == 1) {
@@ -182,6 +204,10 @@ public class MachineASous implements Exit, Mise {
         }
     }
 
+    /**
+     * Vérifie que la mise est correcte (positive et inférieure au total
+     * disponible par le joueur)
+     */
     @Override
     public void VerifMise() {
 
@@ -201,6 +227,9 @@ public class MachineASous implements Exit, Mise {
 
     }
 
+    /**
+     * Timer de 1 seconde
+     */
     public void sleep1000() {
 
         try {
@@ -210,6 +239,9 @@ public class MachineASous implements Exit, Mise {
         }
     }
 
+    /**
+     * Annonce au joueur qu'il quitte la table
+     */
     @Override
     public void Quitter() {
         System.out.println("Vous quittez la table avec " + Player.argent + "$");

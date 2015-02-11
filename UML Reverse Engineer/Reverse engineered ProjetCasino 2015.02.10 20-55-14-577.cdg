@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Reverse engineered ProjetCasino 2015.02.10 20-55-14-577">
+  <ClassDiagramComponents>
+    <Class xPosition="20.0" yPosition="20.0" package="Bar" isAbstract="true" name="Alcoolemie" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="positif" visibility="package" type="boolean" isStatic="true"/>
+        <Field name="drink" visibility="package" type="boolean" isStatic="true"/>
+        <Field name="saoul" visibility="package" type="boolean" isStatic="true"/>
+      </Fields>
+      <Methods>
+        <Method name="verifTaux" visibility="public" returnType="void" isStatic="true">
+          <Argument type="double" name="ref"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class xPosition="320.0" yPosition="20.0" package="Bar" name="Boisson" visibility="public">
+      <Constructors>
+        <Constructor name="Boisson" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="price"/>
+          <Argument type="int" name="number"/>
+        </Constructor>
+      </Constructors>
+      <Fields>
+        <Field name="name" visibility="public" type="String"/>
+        <Field name="price" visibility="public" type="int"/>
+        <Field name="taux" visibility="public" type="double"/>
+        <Field name="number" visibility="public" type="int"/>
+      </Fields>
+      <Methods/>
+    </Class>
+    <Class xPosition="620.0" yPosition="20.0" package="Blackjack" name="Blackjack" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="croupiersuperieur21" visibility="public" type="boolean"/>
+        <Field name="joueurexit" visibility="public" type="boolean"/>
+        <Field name="getblackjack" visibility="public" type="boolean"/>
+        <Field name="mise" visibility="public" type="double"/>
+      </Fields>
+      <Methods>
+        <Method name="AccueilBlackJack" visibility="public" returnType="void"/>
+        <Method name="Rejouer" visibility="public" returnType="void"/>
+        <Method name="jouerBlackjack" visibility="public" returnType="void"/>
+        <Method name="VerifMise" visibility="public" returnType="void"/>
+        <Method name="sleep500" visibility="public" returnType="void"/>
+        <Method name="Quitter" visibility="public" returnType="void"/>
+      </Methods>
+    </Class>
+    <Class xPosition="920.0" yPosition="20.0" package="Blackjack" name="Carte" visibility="public">
+      <Constructors>
+        <Constructor name="Carte" visibility="public">
+          <Argument type="int" name="laValeur"/>
+          <Argument type="int" name="laSuite"/>
+        </Constructor>
+      </Constructors>
+      <Fields>
+        <Field name="PIQUES" visibility="public" type="int" isStatic="true" isFinal="true"/>
+        <Field name="AS" visibility="public" type="int" isStatic="true" isFinal="true"/>
+        <Field name="suite" visibility="private" type="int" isFinal="true"/>
+        <Field name="valeur" visibility="private" type="int" isFinal="true"/>
+      </Fields>
+      <Methods>
+        <Method name="getSuite" visibility="public" returnType="int"/>
+        <Method name="getValeur" visibility="public" returnType="int"/>
+        <Method name="ecrireSuite" visibility="public" returnType="String"/>
+        <Method name="ecrireValeur" visibility="public" returnType="String"/>
+        <Method name="toString" visibility="public" returnType="String"/>
+      </Methods>
+    </Class>
+    <Class xPosition="20.0" yPosition="420.0" package="Blackjack" name="Main" visibility="public">
+      <Constructors>
+        <Constructor name="Main" visibility="public"/>
+      </Constructors>
+      <Fields>
+        <Field name="main" visibility="private" type="ArrayList"/>
+      </Fields>
+      <Methods>
+        <Method name="vider" visibility="public" returnType="void"/>
+        <Method name="ajouterCarte" visibility="public" returnType="void">
+          <Argument type="Carte" name="c"/>
+        </Method>
+        <Method name="enleverCarte" visibility="public" returnType="void">
+          <Argument type="Carte" name="c"/>
+        </Method>
+        <Method name="enleverCartePosition" visibility="public" returnType="void">
+          <Argument type="int" name="position"/>
+        </Method>
+        <Method name="nombreDeCartes" visibility="public" returnType="int"/>
+        <Method name="selectionnerCarte" visibility="public" returnType="Carte">
+          <Argument type="int" name="position"/>
+        </Method>
+        <Method name="triParSuites" visibility="public" returnType="void"/>
+        <Method name="triParValeur" visibility="public" returnType="void"/>
+      </Methods>
+    </Class>
+    <Class xPosition="320.0" yPosition="420.0" package="Blackjack" name="MainBlackjack" visibility="public">
+      <Constructors/>
+      <Fields/>
+      <Methods>
+        <Method name="valeurBlackJack" visibility="public" returnType="int"/>
+      </Methods>
+    </Class>
+    <Class xPosition="620.0" yPosition="420.0" package="Blackjack" name="Paquet" visibility="public">
+      <Constructors>
+        <Constructor name="Paquet" visibility="public"/>
+      </Constructors>
+      <Fields>
+        <Field name="paquet" visibility="private" type="Carte[]" isFinal="true"/>
+        <Field name="cartesTirees" visibility="private" type="int"/>
+      </Fields>
+      <Methods>
+        <Method name="melanger" visibility="public" returnType="void"/>
+        <Method name="cartesRestantes" visibility="public" returnType="int"/>
+        <Method name="tirerCarte" visibility="public" returnType="Carte"/>
+      </Methods>
+    </Class>
+    <Interface xPosition="920.0" yPosition="420.0" package="Interface" name="Exit" visibility="public">
+      <Methods>
+        <Method name="Quitter" visibility="public" returnType="void"/>
+      </Methods>
+    </Interface>
+    <Interface xPosition="20.0" yPosition="820.0" package="Interface" name="Mise" visibility="public">
+      <Methods>
+        <Method name="VerifMise" visibility="public" returnType="void"/>
+      </Methods>
+    </Interface>
+    <Class xPosition="320.0" yPosition="820.0" package="MachineASous" name="MachineASous" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="mise" visibility="public" type="double"/>
+      </Fields>
+      <Methods>
+        <Method name="Jouer" visibility="public" returnType="void"/>
+        <Method name="Rejouer" visibility="public" returnType="void"/>
+        <Method name="jouerMachineASous" visibility="public" returnType="void"/>
+        <Method name="calculGains" visibility="public" returnType="double" isStatic="true">
+          <Argument type="double" name="argent"/>
+          <Argument type="double" name="mise"/>
+          <Argument type="Tableau" name="tirage"/>
+          <Argument type="int" name="i"/>
+          <Argument type="int" name="j"/>
+        </Method>
+        <Method name="VerifMise" visibility="public" returnType="void"/>
+        <Method name="sleep1000" visibility="public" returnType="void"/>
+        <Method name="Quitter" visibility="public" returnType="void"/>
+      </Methods>
+    </Class>
+    <Class xPosition="620.0" yPosition="820.0" package="MachineASous" name="Tableau" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="cases" visibility="public" type="int[][]"/>
+      </Fields>
+      <Methods>
+        <Method name="creerTableau" visibility="public" returnType="int[][]"/>
+        <Method name="caseAleatoire" visibility="public" returnType="int"/>
+      </Methods>
+    </Class>
+    <Class xPosition="920.0" yPosition="820.0" package="MenuCasino" name="ChoixMenu" visibility="public">
+      <Constructors>
+        <Constructor name="ChoixMenu" visibility="public"/>
+      </Constructors>
+      <Fields>
+        <Field name="quitter" visibility="public" type="boolean" isStatic="true"/>
+        <Field name="fired" visibility="public" type="boolean" isStatic="true"/>
+        <Field name="decision" visibility="public" type="int"/>
+      </Fields>
+      <Methods>
+        <Method name="Start" visibility="public" returnType="void"/>
+        <Method name="ChoixJeu" visibility="public" returnType="void"/>
+      </Methods>
+    </Class>
+    <Class xPosition="20.0" yPosition="1220.0" package="MenuCasino" name="Menu" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="argent" visibility="public" type="double" isStatic="true"/>
+      </Fields>
+      <Methods>
+        <Method name="main" visibility="public" returnType="void" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="verifInteger" visibility="public" returnType="void" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class xPosition="320.0" yPosition="1220.0" package="MenuCasino" name="Player" visibility="public">
+      <Constructors>
+        <Constructor name="Player" visibility="public">
+          <Argument type="double" name="argent"/>
+          <Argument type="double" name="alcoolemie"/>
+        </Constructor>
+      </Constructors>
+      <Fields>
+        <Field name="argent" visibility="public" type="double" isStatic="true"/>
+        <Field name="tauxalcool" visibility="public" type="double" isStatic="true"/>
+      </Fields>
+      <Methods/>
+    </Class>
+    <Class xPosition="620.0" yPosition="1220.0" package="Roulette" name="ChoixJoueur" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="number" visibility="public" type="List&lt;ChoixJoueurNumber&gt;" isStatic="true"/>
+        <Field name="choixPair" visibility="public" type="boolean" isStatic="true"/>
+        <Field name="choixImpair" visibility="public" type="boolean" isStatic="true"/>
+        <Field name="choixNoir" visibility="public" type="boolean" isStatic="true"/>
+        <Field name="choixRouge" visibility="public" type="boolean" isStatic="true"/>
+        <Field name="misePair" visibility="public" type="int" isStatic="true"/>
+        <Field name="miseImpair" visibility="public" type="int" isStatic="true"/>
+        <Field name="miseNoir" visibility="public" type="int" isStatic="true"/>
+        <Field name="miseRouge" visibility="public" type="int" isStatic="true"/>
+      </Fields>
+      <Methods/>
+    </Class>
+    <Class xPosition="920.0" yPosition="1220.0" package="Roulette" name="ChoixJoueurNumber" visibility="public">
+      <Constructors>
+        <Constructor name="ChoixJoueurNumber" visibility="public">
+          <Argument type="int" name="choix"/>
+          <Argument type="int" name="mise"/>
+        </Constructor>
+      </Constructors>
+      <Fields>
+        <Field name="choix" visibility="package" type="int"/>
+        <Field name="mise" visibility="package" type="int"/>
+      </Fields>
+      <Methods/>
+    </Class>
+    <Class xPosition="20.0" yPosition="1620.0" package="Roulette" name="Roulette" visibility="public">
+      <Constructors/>
+      <Fields>
+        <Field name="choixnombre" visibility="public" type="int"/>
+        <Field name="choixmise" visibility="public" type="int"/>
+      </Fields>
+      <Methods>
+        <Method name="initRoulette" visibility="public" returnType="void"/>
+        <Method name="choixJoueur" visibility="public" returnType="void"/>
+        <Method name="choixNombre" visibility="public" returnType="void"/>
+        <Method name="choixParite" visibility="public" returnType="void"/>
+        <Method name="choixCouleur" visibility="public" returnType="void"/>
+        <Method name="verifNombre" visibility="public" returnType="void"/>
+        <Method name="verifParite" visibility="public" returnType="void"/>
+        <Method name="verifCouleur" visibility="public" returnType="void"/>
+        <Method name="montantMise" visibility="public" returnType="void">
+          <Argument type="String" name="jeux"/>
+        </Method>
+        <Method name="VerifMise" visibility="public" returnType="void"/>
+        <Method name="SaveMise" visibility="public" returnType="void">
+          <Argument type="String" name="jeux"/>
+          <Argument type="int" name="montant"/>
+        </Method>
+        <Method name="gainArgent" visibility="public" returnType="void">
+          <Argument type="int" name="gain"/>
+        </Method>
+        <Method name="miseArgent" visibility="public" returnType="void">
+          <Argument type="int" name="mise"/>
+        </Method>
+        <Method name="Quitter" visibility="public" returnType="void"/>
+      </Methods>
+    </Class>
+    <Class xPosition="320.0" yPosition="1620.0" package="Roulette" name="SetRoulette" visibility="public">
+      <Constructors>
+        <Constructor name="SetRoulette" visibility="public"/>
+      </Constructors>
+      <Fields>
+        <Field name="nombre" visibility="public" type="int" isStatic="true"/>
+        <Field name="color" visibility="public" type="String" isStatic="true"/>
+        <Field name="parite" visibility="public" type="String" isStatic="true"/>
+      </Fields>
+      <Methods/>
+    </Class>
+    <Class xPosition="620.0" yPosition="1620.0" package="SetUp" name="SetUpBoisson" visibility="public">
+      <Constructors/>
+      <Fields/>
+      <Methods>
+        <Method name="setUpAlcool" visibility="public" returnType="List&lt;Boisson&gt;"/>
+        <Method name="setUpSoda" visibility="public" returnType="List&lt;Boisson&gt;"/>
+        <Method name="setUpCocktails" visibility="public" returnType="List&lt;Boisson&gt;"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="MachineASous" target="Tableau" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Roulette" target="Mise"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Blackjack" target="Mise"/>
+    <IsRelation name="is" source="MainBlackjack" target="Main"/>
+    <UseRelation source="SetUpBoisson" target="Boisson" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="MachineASous" target="Mise"/>
+    <UseRelation source="Paquet" target="Carte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="paquet" source="Paquet" target="Carte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="number" source="ChoixJoueur" target="ChoixJoueurNumber" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="MachineASous" target="Exit"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Roulette" target="Exit"/>
+    <UseRelation source="Main" target="Carte" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Blackjack" target="Exit"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

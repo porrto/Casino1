@@ -97,6 +97,6 @@ public final class ChoixMenu {
             System.out.println("Veuillez rentrer 1, 2, 3, 4 ou 5 ");
             ChoixJeu();
         }
-        
+
     }
 }

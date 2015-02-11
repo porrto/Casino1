@@ -2,20 +2,39 @@ package Blackjack;
 
 import java.util.ArrayList;
 
+/**
+ * Définit une main (attention à le lire en français et non en anglais)
+ *
+ * @author enzo
+ */
 public class Main {
 
+    /**
+     * Definit la main comme une liste de cartes
+     */
     private ArrayList main;
 
+    /**
+     * Construit une main
+     */
     public Main() {
 
         main = new ArrayList();
     }
 
+    /**
+     * Vide une main
+     */
     public void vider() {
 
         main.clear();
     }
 
+    /**
+     * Ajoute une carte a la main
+     *
+     * @param c La Carte à ajouter
+     */
     public void ajouterCarte(Carte c) {
 
         if (c != null) {
@@ -23,11 +42,21 @@ public class Main {
         }
     }
 
+    /**
+     * Enleve une carte à la main
+     *
+     * @param c La carte à enlever
+     */
     public void enleverCarte(Carte c) {
 
         main.remove(c);
     }
 
+    /**
+     * Enleve une carte de la main à une position donnée
+     *
+     * @param position la position à laquelle se trouve la carte à enlever
+     */
     public void enleverCartePosition(int position) {
 
         if (position >= 0 && position < main.size()) {
@@ -35,11 +64,22 @@ public class Main {
         }
     }
 
+    /**
+     * Retourne le nombre de cartes dans la main
+     *
+     * @return la taille de la main
+     */
     public int nombreDeCartes() {
 
         return main.size();
     }
 
+    /**
+     * Sélectionne une carte à une position donnée
+     *
+     * @param position la position à laquelle se trouve la carte à sélectionner
+     * @return la carte sélectionnée
+     */
     public Carte selectionnerCarte(int position) {
 
         if (position >= 0 && position < main.size()) {
@@ -49,6 +89,9 @@ public class Main {
         }
     }
 
+    /**
+     * Trie la main par suite (Piques/Coeur/Carreaux/Trefles)
+     */
     public void triParSuites() {
 
         ArrayList nouvelleMain = new ArrayList();
@@ -69,6 +112,9 @@ public class Main {
         main = nouvelleMain;
     }
 
+    /**
+     * Trie la main par valeur
+     */
     public void triParValeur() {
 
         ArrayList nouvelleMain = new ArrayList();
